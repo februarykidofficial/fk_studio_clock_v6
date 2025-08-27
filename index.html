@@ -119,6 +119,10 @@
     .particle-indicator .dot{width:18px;height:18px;border-radius:50%;background:white;box-shadow:0 0 20px var(--on-air-color)}
     .particle-indicator span{text-shadow:2px 2px 4px rgba(0,0,0,.8)}
     .particle-indicator.hidden{opacity:0}
+   #current-date {
+     white-space: nowrap;
+     font-size: clamp(1.5rem, 4vw, 3rem); /* Responsive font size */
+   }
   </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen text-white p-4 bg-preset-purple-cyan">
@@ -131,7 +135,7 @@
       </div>
       <div class="space-y-2 relative z-10">
         <p id="current-time" class="neon-text text-7xl md:text-9xl leading-none tracking-wide"></p>
-        <p id="current-date" class="text-2xl md:text-5xl opacity-80"></p>
+        <p id="current-date" class="text-3xl md:text-5xl opacity-80"></p>
       </div>
       <div id="progress-dots-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center w-11/12"></div>
     </div>
