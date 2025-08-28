@@ -15,6 +15,7 @@
       --body-font:'Oxanium',monospace;
       --on-air-color:#FF0000;
       --progress:0;
+      --text-outline-color:#000000;
     }
     body{font-family:var(--body-font)}
     .bg-preset-purple-cyan{background:linear-gradient(45deg,#0f172a,#0c4a6e,#0f172a,#7e22ce);background-size:400% 400%;animation:grad-1 15s ease infinite}
@@ -32,6 +33,10 @@
     .bg-preset-peach{background:linear-gradient(45deg,#ffd1b6,#ffad82,#ff8c61,#ff7f50);background-size:400% 400%;animation:grad-13 15s ease infinite}
     .bg-preset-ice{background:linear-gradient(45deg,#e0ffff,#b0e0e6,#add8e6,#87ceeb);background-size:400% 400%;animation:grad-14 25s ease infinite}
     .bg-preset-dark-static{background:#0f172a}
+    .bg-preset-night-black{background:linear-gradient(45deg,#000000,#1a1a1a,#000000,#2d2d2d);background-size:400% 400%;animation:grad-15 12s ease infinite}
+    .bg-preset-dark-navy{background:linear-gradient(45deg,#0a0e27,#16213e,#0a0e27,#2c3e50);background-size:400% 400%;animation:grad-16 18s ease infinite}
+    .bg-preset-night-stars{background:linear-gradient(45deg,#0c0c0c,#1e3c72,#2a5298,#0c0c0c);background-size:400% 400%;animation:grad-17 25s ease infinite}
+    .bg-preset-milky-way{background:linear-gradient(45deg,#232526,#414345,#2c3e50,#34495e);background-size:400% 400%;animation:grad-18 20s ease infinite}
     @keyframes grad-1{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
     @keyframes grad-2{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
     @keyframes grad-3{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
@@ -46,9 +51,14 @@
     @keyframes grad-12{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
     @keyframes grad-13{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
     @keyframes grad-14{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+    @keyframes grad-15{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+    @keyframes grad-16{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+    @keyframes grad-17{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+    @keyframes grad-18{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
     .glass-container{backdrop-filter:blur(10px);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(31,38,135,.37);transition:all .35s}
     .glass-container.fullscreen-zoom{transform:scale(1.7)}
     .neon-text{text-shadow:0 0 5px var(--neon-color),0 0 10px var(--neon-color),0 0 20px var(--neon-color),0 0 40px var(--neon-color)}
+    .neon-text.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
     .on-air-active-border{
       border:2px solid white;
       box-shadow:
@@ -115,6 +125,7 @@
       100%{opacity:.2;transform:scale(calc(var(--scale,.8) * 1.5));filter:blur(2px)}
     }
     .particle-time{position:relative;z-index:10;font-size:4rem;font-weight:700;color:white;text-shadow:0 0 20px var(--neon-color),0 0 40px var(--neon-color),0 0 60px var(--neon-color);margin-bottom:1rem;letter-spacing:0.1em}
+    .particle-time.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
     .particle-date{position:relative;z-index:10;font-size:2rem;color:rgba(255,255,255,.8);text-shadow:0 0 10px rgba(255,255,255,.5);margin-bottom:2rem}
     .particle-dots{position:absolute;inset:0;border-radius:50%;pointer-events:none}
     .particle-dot{position:absolute;width:3px;height:3px;background:var(--neon-color);border-radius:50%;box-shadow:0 0 10px var(--neon-color);animation:particle-float 6s ease-in-out infinite}
@@ -183,6 +194,8 @@
       margin-bottom:1rem
     }
     
+    .nebula-time.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
+    
     .nebula-date{
       font-size:clamp(1.2rem,3vw,2rem);
       color:rgba(255,255,255,0.9);
@@ -220,7 +233,7 @@
      font-size: clamp(1.5rem, 4vw, 3rem);
    }
    
-   /* FLIP ANIMATION FOR LIVE TEXT - Updated to flip as one unit */
+   /* FLIP ANIMATION FOR LIVE TEXT */
    @keyframes flip {
      0%, 80% { transform: rotateY(0deg); }
      90% { transform: rotateY(180deg); }
@@ -233,6 +246,104 @@
      gap: 12px;
      animation: flip 5s infinite;
      transform-style: preserve-3d;
+   }
+   
+   /* LIVE EVENT TICKER STYLES - GLASS DESIGN */
+   .live-ticker {
+     position: absolute;
+     top: 24px;
+     left: 24px;
+     transform: translateX(-100%);
+     backdrop-filter: blur(10px);
+     background: rgba(255, 255, 255, 0.15);
+     color: white;
+     padding: 8px 16px;
+     border-radius: 20px;
+     font-weight: 600;
+     font-size: 14px;
+     text-transform: uppercase;
+     letter-spacing: 0.5px;
+     box-shadow: 
+       0 4px 20px rgba(255, 255, 255, 0.1),
+       0 0 15px rgba(255, 255, 255, 0.05);
+     border: 1px solid rgba(255, 255, 255, 0.2);
+     z-index: 15;
+     opacity: 0;
+     transition: all 0.8s ease-in-out;
+     max-width: 250px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+   }
+   
+   .live-ticker.show {
+     transform: translateX(0);
+     opacity: 1;
+   }
+   
+   .live-ticker::before {
+     content: "●";
+     color: var(--on-air-color);
+     margin-right: 8px;
+     font-size: 16px;
+     text-shadow: 0 0 8px var(--on-air-color);
+     animation: pulse 2s infinite;
+   }
+   
+   @keyframes pulse {
+     0%, 100% { opacity: 1; }
+     50% { opacity: 0.6; }
+   }
+   
+   /* TOGGLE BUTTONS STYLES */
+   .toggle-group {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 8px;
+     margin-bottom: 16px;
+   }
+   
+   .toggle-btn {
+     padding: 8px 12px;
+     font-size: 13px;
+     font-weight: 600;
+     border: 1px solid rgba(255, 255, 255, 0.2);
+     background: rgba(255, 255, 255, 0.05);
+     color: rgba(255, 255, 255, 0.7);
+     border-radius: 8px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     text-align: center;
+     min-width: fit-content;
+   }
+   
+   .toggle-btn:hover {
+     background: rgba(255, 255, 255, 0.1);
+     border-color: rgba(255, 255, 255, 0.3);
+   }
+   
+   .toggle-btn.active {
+     background: var(--neon-color);
+     border-color: var(--neon-color);
+     color: #000;
+     box-shadow: 0 0 8px var(--neon-color);
+   }
+   
+   /* ENHANCED TOGGLE SWITCH STYLES WITH PROPER PILL-SHAPED FRAME */
+   .toggle-switch-frame {
+     border: 1px solid rgba(255, 255, 255, 1);
+     border-radius: 50px;
+     padding: 1px;
+     display: inline-block;
+     width: 48px;
+     height: 28.5px;
+   }
+   
+   .toggle-switch-frame .w-11 {
+     border: none !important;
+     width: 44px !important;
+     height: 24px !important;
    }
    
    /* FIREFLIES EFFECT */
@@ -338,6 +449,11 @@
 <div id="views" class="w-full max-w-3xl">
   <div id="view-classic">
     <div id="main-clock-container" class="glass-container p-10 md:p-16 rounded-3xl w-full max-w-3xl space-y-8 text-center">
+      <!-- LIVE EVENT TICKER -->
+      <div id="live-ticker" class="live-ticker">
+        <span id="ticker-text">Event Name</span>
+      </div>
+      
       <div id="on-air-indicator" class="absolute top-6 right-8 flex items-center gap-3 hidden">
         <div class="live-indicator-wrapper">
           <div class="dot w-4 h-4 rounded-full bg-current"></div><span id="on-air-text" class="text-3xl font-bold">LIVE</span>
@@ -417,7 +533,7 @@
 
 <button id="settings-btn" class="glass-btn p-3 rounded-full absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
   </svg>
 </button>
 
@@ -443,24 +559,40 @@
         <div data-color="#008080" style="background:#008080" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-color="#800080" style="background:#800080" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
-      <label class="block mb-4">
-        Font Style
-        <select id="font-select" class="glass-container p-2 w-full rounded">
-          <option value="'Oxanium', monospace" style="font-family:'Oxanium',monospace">Oxanium</option>
-          <option value="'Orbitron', sans-serif" style="font-family:'Orbitron',sans-serif">Orbitron</option>
-          <option value="'Russo One', sans-serif" style="font-family:'Russo One',sans-serif">Russo One</option>
-          <option value="'Share Tech Mono', monospace" style="font-family:'Share Tech Mono',monospace">Share Tech Mono</option>
-        </select>
-      </label>
-      <label class="block">
-        Theme / Layout
-        <select id="layoutTheme" class="glass-container p-2 w-full rounded">
-          <option value="classic">Classic</option>
-          <option value="circular">Circular</option>
-          <option value="particle">Particle Wave</option>
-          <option value="nebula">Cosmic Nebula</option>
-        </select>
-      </label>
+      
+      <!-- TEXT OUTLINE SECTION -->
+      <div class="flex items-center justify-between mb-4">
+        <p class="text-lg">Text Outline</p>
+        <div class="toggle-switch-frame">
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="text-outline-toggle" type="checkbox" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div>
+          </label>
+        </div>
+      </div>
+      <p class="mb-1 font-semibold">Outline Color:</p>
+      <div id="outline-color-grid" class="grid grid-cols-2 gap-2 mb-4">
+        <div data-color="#000000" style="background:#000000" class="w-8 h-8 rounded border border-white/20 cursor-pointer ring"></div>
+        <div data-color="#FFFFFF" style="background:#FFFFFF" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
+      </div>
+      
+      <!-- FONT STYLE TOGGLE BUTTONS -->
+      <p class="mb-2 font-semibold">Font Style:</p>
+      <div id="font-toggle-group" class="toggle-group">
+        <div class="toggle-btn active" data-font="'Oxanium', monospace">Oxanium</div>
+        <div class="toggle-btn" data-font="'Orbitron', sans-serif">Orbitron</div>
+        <div class="toggle-btn" data-font="'Russo One', sans-serif">Russo One</div>
+        <div class="toggle-btn" data-font="'Share Tech Mono', monospace">Share Tech</div>
+      </div>
+      
+      <!-- THEME/LAYOUT TOGGLE BUTTONS -->
+      <p class="mb-2 font-semibold">Theme / Layout:</p>
+      <div id="layout-toggle-group" class="toggle-group">
+        <div class="toggle-btn active" data-layout="classic">Classic</div>
+        <div class="toggle-btn" data-layout="circular">Circular</div>
+        <div class="toggle-btn" data-layout="particle">Particle Wave</div>
+        <div class="toggle-btn" data-layout="nebula">Cosmic Nebula</div>
+      </div>
     </div>
     <hr class="section-divider">
     <div class="mb-6">
@@ -481,23 +613,31 @@
         <div data-preset="bg-preset-peach" class="bg-preset-peach w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-ice" class="bg-preset-ice w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-dark-static" class="bg-preset-dark-static w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
+        <div data-preset="bg-preset-night-black" class="bg-preset-night-black w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
+        <div data-preset="bg-preset-dark-navy" class="bg-preset-dark-navy w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
+        <div data-preset="bg-preset-night-stars" class="bg-preset-night-stars w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
+        <div data-preset="bg-preset-milky-way" class="bg-preset-milky-way w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
       
       <!-- BACKGROUND EFFECTS SECTION -->
       <h4 class="text-lg font-bold mb-2 text-center">Background Effects</h4>
       <div class="flex items-center justify-between mb-3">
         <p class="text-lg">Fireflies Effect</p>
-        <label class="inline-flex items-center cursor-pointer">
-          <input id="fireflies-toggle" type="checkbox" class="sr-only peer" checked>
-          <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-500"></div>
-        </label>
+        <div class="toggle-switch-frame">
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="fireflies-toggle" type="checkbox" class="sr-only peer" checked>
+            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-500"></div>
+          </label>
+        </div>
       </div>
       <div class="flex items-center justify-between">
         <p class="text-lg">Parallax Stars</p>
-        <label class="inline-flex items-center cursor-pointer">
-          <input id="parallax-stars-toggle" type="checkbox" class="sr-only peer" checked>
-          <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
-        </label>
+        <div class="toggle-switch-frame">
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="parallax-stars-toggle" type="checkbox" class="sr-only peer" checked>
+            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+          </label>
+        </div>
       </div>
     </div>
     <hr class="section-divider">
@@ -505,33 +645,37 @@
       <h3 class="text-xl font-bold mb-3 text-center">Time & Format</h3>
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">24-hour time</p>
-        <label class="inline-flex items-center cursor-pointer">
-          <input id="time-format-toggle" type="checkbox" class="sr-only peer" checked>
-          <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
-        </label>
+        <div class="toggle-switch-frame">
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="time-format-toggle" type="checkbox" class="sr-only peer" checked>
+            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
+          </label>
+        </div>
       </div>
-      <label class="block">
-        Date Format
-        <select id="date-format-select" class="glass-container p-2 w-full rounded">
-          <option value="en-GB">DD/MM/YYYY (22/08/2025)</option>
-          <option value="en-US">MM/DD/YYYY (08/22/2025)</option>
-          <option value="en-CA">YYYY-MM-DD (2025-08-22)</option>
-          <option value="de-DE">DD.MM.YYYY (22.08.2025)</option>
-          <option value="fr-FR">DD/MM/YYYY (22/08/2025)</option>
-          <option value="long-en">August 22, 2025</option>
-          <option value="long-weekday" selected>Friday, August 22, 2025</option>
-        </select>
-      </label>
+      
+      <!-- DATE FORMAT TOGGLE BUTTONS -->
+      <p class="mb-2 font-semibold">Date Format:</p>
+      <div id="date-toggle-group" class="toggle-group">
+        <div class="toggle-btn" data-format="en-GB">22/08/2025</div>
+        <div class="toggle-btn" data-format="en-US">08/22/2025</div>
+        <div class="toggle-btn" data-format="en-CA">2025-08-22</div>
+        <div class="toggle-btn" data-format="de-DE">22.08.2025</div>
+        <div class="toggle-btn" data-format="fr-FR">22/08/2025</div>
+        <div class="toggle-btn" data-format="long-en">August 22, 2025</div>
+        <div class="toggle-btn active" data-format="long-weekday">Friday, August 22, 2025</div>
+      </div>
     </div>
     <hr class="section-divider">
     <div class="mb-6">
       <h3 class="text-xl font-bold mb-3 text-center">"ON AIR" Schedule</h3>
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">Enable Schedule</p>
-        <label class="inline-flex items-center cursor-pointer">
-          <input id="schedule-enabled-toggle" type="checkbox" class="sr-only peer" checked>
-          <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-        </label>
+        <div class="toggle-switch-frame">
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="schedule-enabled-toggle" type="checkbox" class="sr-only peer" checked>
+            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+          </label>
+        </div>
       </div>
       <div id="schedule-list" class="space-y-2 mb-4"></div>
       <button id="add-schedule-btn" class="glass-btn w-full py-2 rounded font-bold">Add New Schedule</button>
@@ -541,15 +685,13 @@
       <h3 class="text-xl font-bold mb-3 text-center">"ON AIR" Indicator</h3>
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">Manual "ON AIR"</p>
-        <label class="inline-flex items-center cursor-pointer">
-          <input id="manual-on-air-toggle" type="checkbox" class="sr-only peer">
-          <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-        </label>
+        <div class="toggle-switch-frame">
+          <label class="inline-flex items-center cursor-pointer">
+            <input id="manual-on-air-toggle" type="checkbox" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+          </label>
+        </div>
       </div>
-      <label class="block mb-4">
-        Indicator Text
-        <input id="on-air-text-input" type="text" class="glass-container p-2 w-full rounded" value="LIVE">
-      </label>
       <p class="mb-1 font-semibold">Indicator Color:</p>
       <div id="on-air-color-grid" class="grid grid-cols-5 gap-2 mb-4">
         <div data-color="#FF0000" style="background:#FF0000" class="w-8 h-8 rounded border border-white/20 cursor-pointer ring"></div>
@@ -563,13 +705,6 @@
         <div data-color="#008080" style="background:#008080" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-color="#800080" style="background:#800080" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
-      <div class="flex items-center justify-between">
-        <p class="text-lg">Pulse Animation</p>
-        <label class="inline-flex items-center cursor-pointer">
-          <input id="on-air-pulse-toggle" type="checkbox" class="sr-only peer" checked>
-          <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-        </label>
-      </div>
     </div>
     <button id="close-modal-btn" class="glass-btn w-full py-2 rounded font-bold">Close</button>
   </div>
@@ -579,6 +714,9 @@
   <div class="modal-content w-full max-w-sm p-6 rounded-2xl">
     <h2 id="edit-schedule-heading" class="text-2xl font-semibold mb-4 text-center">Add Schedule</h2>
     <div class="space-y-4">
+      <label class="block">Event Name
+        <input id="event-name-input" type="text" class="glass-container p-2 w-full rounded" placeholder="e.g., Morning Show">
+      </label>
       <label class="block">Start Time
         <input id="start-time-input" type="time" class="glass-container p-2 w-full rounded">
       </label>
@@ -613,20 +751,36 @@ window.onload=function(){
   const hHand=$('handHour'), mHand=$('handMinute'), sHand=$('handSecond');
   const classicOnAir=$('on-air-indicator'), circOnAir=$('circIndicator'), particleOnAir=$('particleIndicator'), nebulaOnAir=$('nebulaIndicator');
   const onAirText=$('on-air-text');
-  const manualToggle=$('manual-on-air-toggle'), schedToggle=$('schedule-enabled-toggle'), pulseToggle=$('on-air-pulse-toggle');
+  const manualToggle=$('manual-on-air-toggle'), schedToggle=$('schedule-enabled-toggle');
   const firefliesToggle=$('fireflies-toggle'), parallaxStarsToggle=$('parallax-stars-toggle');
+  const textOutlineToggle=$('text-outline-toggle');
   const settings=$('settings-modal'), settingsBtn=$('settings-btn'), closeSettings=$('close-modal-btn');
   const scaleSlider=$('scale-slider'), scaleLbl=$('scale-label-val');
-  const fontSel=$('font-select'), layoutSel=$('layoutTheme'), dateFormatSel=$('date-format-select');
-  const neonGrid=$('neon-color-grid'), onAirGrid=$('on-air-color-grid'), bgGrid=$('bg-preset-grid');
+  const neonGrid=$('neon-color-grid'), onAirGrid=$('on-air-color-grid'), bgGrid=$('bg-preset-grid'), outlineGrid=$('outline-color-grid');
   const mainClock=$('main-clock-container');
   const circularWrap=$('circular-wrap'), particleWrap=$('particle-wrap'), nebulaWrap=$('nebula-wrap');
   const particleDotsContainer=$('particle-dots');
   const firefliesContainer=$('fireflies-container'), parallaxStarsContainer=$('parallax-stars-container');
   const schedList=$('schedule-list'), addSchedBtn=$('add-schedule-btn');
-  const editModal=$('edit-schedule-modal'), startIn=$('start-time-input'), endIn=$('end-time-input');
+  const editModal=$('edit-schedule-modal'), startIn=$('start-time-input'), endIn=$('end-time-input'), eventNameIn=$('event-name-input');
   const editHeading=$('edit-schedule-heading');
   const dayChecks=[...editModal.querySelectorAll('input[type="checkbox"]')];
+  
+  // Live ticker elements
+  const liveTicker = $('live-ticker');
+  const tickerText = $('ticker-text');
+  let tickerInterval = null;
+  let lastTickerShow = 0;
+  
+  // Toggle button groups
+  const fontToggleGroup=$('font-toggle-group');
+  const layoutToggleGroup=$('layout-toggle-group');
+  const dateToggleGroup=$('date-toggle-group');
+  
+  // Current settings
+  let currentFont = localStorage.getItem('fontStyle')||"'Oxanium', monospace";
+  let currentLayout = localStorage.getItem('layoutTheme')||'classic';
+  let currentDateFormat = localStorage.getItem('dateFormat')||'long-weekday';
   
   // Nebula animation
   const nebulaFrames=document.querySelectorAll('#nebula-animation img');
@@ -675,33 +829,127 @@ window.onload=function(){
   createParallaxStars();
   
   let schedule=JSON.parse(localStorage.getItem('onAirSchedule'))||[
-    {start:'07:30',end:'08:55',days:[1,2,3,4,5]},
-    {start:'09:07',end:'10:35',days:[1,2,3,4,5]},
-    {start:'21:00',end:'22:30',days:[1,3]},
-    {start:'20:00',end:'21:30',days:[1]}
+    {name:'PORANNY RING', start:'07:30',end:'08:55',days:[1,2,3,4,5]},
+    {name:'EXPRESS BIEDRZYCKIEJ', start:'09:07',end:'10:35',days:[1,2,3,4,5]},
+    {name:'RISERCZ', start:'21:00',end:'22:30',days:[1]},
+    {name:'NOCNA ZMIANA', start:'21:00',end:'22:30',days:[3]},
+    {name:'DEBATA STARCIE', start:'20:00',end:'21:30',days:[4]}
   ];
   let editIdx=-1;
   const root=document.documentElement;
   
   // SET NEW DEFAULTS FOR FIRST TIME USERS
-  root.style.setProperty('--neon-color',localStorage.getItem('neonColor')||'#FFFFFF'); // Changed to WHITE
-  root.style.setProperty('--on-air-color',localStorage.getItem('onAirColor')||'#FF0000'); // RED (already default)
-  const bg=localStorage.getItem('bgPreset')||'bg-preset-galaxy';document.body.classList.add(bg); // Changed to GALAXY
+  root.style.setProperty('--neon-color',localStorage.getItem('neonColor')||'#FFFFFF');
+  root.style.setProperty('--on-air-color',localStorage.getItem('onAirColor')||'#FF0000');
+  root.style.setProperty('--text-outline-color',localStorage.getItem('textOutlineColor')||'#000000');
+  root.style.setProperty('--body-font',currentFont);
+  const bg=localStorage.getItem('bgPreset')||'bg-preset-galaxy';document.body.classList.add(bg);
   [...bgGrid.children].forEach(d=>d.classList.toggle('ring',d.dataset.preset===bg));
   const scale=parseFloat(localStorage.getItem('clockScale')||1);scaleSlider.value=scale;scaleLbl.textContent=Math.round(scale*100);
   mainClock.style.transform=`scale(${scale})`;circularWrap.style.transform=`scale(${scale})`;particleWrap.style.transform=`scale(${scale})`;nebulaWrap.style.transform=`scale(${scale})`;
-  const layout=localStorage.getItem('layoutTheme')||'classic';layoutSel.value=layout;
-  document.body.classList.toggle('is-circular',layout==='circular');
-  document.body.classList.toggle('is-particle',layout==='particle');
-  document.body.classList.toggle('is-nebula',layout==='nebula');
-  const dateFormat=localStorage.getItem('dateFormat')||'long-weekday';dateFormatSel.value=dateFormat; // Changed to LONG-WEEKDAY
+  document.body.classList.toggle('is-circular',currentLayout==='circular');
+  document.body.classList.toggle('is-particle',currentLayout==='particle');
+  document.body.classList.toggle('is-nebula',currentLayout==='nebula');
   manualToggle.checked=JSON.parse(localStorage.getItem('manualOnAirState'))||false;
+  
+  // Text outline state
+  textOutlineToggle.checked=JSON.parse(localStorage.getItem('textOutlineEnabled'))||false;
   
   // Background effects state - ENABLED BY DEFAULT
   firefliesToggle.checked=localStorage.getItem('firefliesEnabled')!==null ? JSON.parse(localStorage.getItem('firefliesEnabled')) : true;
   parallaxStarsToggle.checked=localStorage.getItem('parallaxStarsEnabled')!==null ? JSON.parse(localStorage.getItem('parallaxStarsEnabled')) : true;
   firefliesContainer.classList.toggle('active',firefliesToggle.checked);
   parallaxStarsContainer.classList.toggle('active',parallaxStarsToggle.checked);
+  
+  // Apply text outline
+  function updateTextOutline(){
+    const hasOutline = textOutlineToggle.checked;
+    timeEl.classList.toggle('text-outline', hasOutline);
+    particleTimeEl.classList.toggle('text-outline', hasOutline);
+    nebulaTimeEl.classList.toggle('text-outline', hasOutline);
+  }
+  updateTextOutline();
+  
+  // Live ticker functions
+  function showTicker(eventName) {
+    if (!eventName || currentLayout !== 'classic') return;
+    
+    tickerText.textContent = eventName;
+    liveTicker.classList.add('show');
+    
+    setTimeout(() => {
+      liveTicker.classList.remove('show');
+    }, 10000); // Show for 10 seconds
+  }
+  
+  function startTickerSystem() {
+    if (tickerInterval) clearInterval(tickerInterval);
+    
+    tickerInterval = setInterval(() => {
+      const now = new Date();
+      const currentEvent = getCurrentEvent(now);
+      
+      if (currentEvent && (manualToggle.checked || (schedToggle.checked && currentEvent.name))) {
+        const timeSinceLastShow = now.getTime() - lastTickerShow;
+        
+        // Show ticker every 30 seconds (30000ms)
+        if (timeSinceLastShow >= 30000) {
+          showTicker(currentEvent.name);
+          lastTickerShow = now.getTime();
+        }
+      }
+    }, 1000); // Check every second
+  }
+  
+  // Get current event
+  function getCurrentEvent(now) {
+    const d = now.getDay();
+    const m = now.getHours() * 60 + now.getMinutes();
+    
+    return schedule.find(s => 
+      s.days.includes(d) && 
+      m >= (+s.start.slice(0,2)) * 60 + +s.start.slice(3) && 
+      m < (+s.end.slice(0,2)) * 60 + +s.end.slice(3)
+    );
+  }
+  
+  // Start ticker system
+  startTickerSystem();
+  
+  // Initialize toggle buttons
+  [...fontToggleGroup.children].forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.font===currentFont);
+    btn.onclick=()=>{
+      [...fontToggleGroup.children].forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFont=btn.dataset.font;
+      root.style.setProperty('--body-font',currentFont);
+      localStorage.setItem('fontStyle',currentFont);
+    };
+  });
+  
+  [...layoutToggleGroup.children].forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.layout===currentLayout);
+    btn.onclick=()=>{
+      [...layoutToggleGroup.children].forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentLayout=btn.dataset.layout;
+      document.body.classList.toggle('is-circular',currentLayout==='circular');
+      document.body.classList.toggle('is-particle',currentLayout==='particle');
+      document.body.classList.toggle('is-nebula',currentLayout==='nebula');
+      localStorage.setItem('layoutTheme',currentLayout);
+    };
+  });
+  
+  [...dateToggleGroup.children].forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.format===currentDateFormat);
+    btn.onclick=()=>{
+      [...dateToggleGroup.children].forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDateFormat=btn.dataset.format;
+      localStorage.setItem('dateFormat',currentDateFormat);
+    };
+  });
   
   // Create particle dots
   for(let i=0;i<50;i++){
@@ -753,7 +1001,7 @@ window.onload=function(){
     const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     schedule.forEach((s,i)=>{
       const row=document.createElement('div');row.className='glass-container p-3 flex justify-between items-center mb-2';
-      row.innerHTML=`<div><p class="font-bold">${s.start} - ${s.end}</p><p class="text-sm opacity-75">${s.days.map(d=>dn[d]).join(', ')}</p></div><div class="flex gap-2"><button class="edit text-cyan-400" data-i="${i}">✏️</button><button class="del text-red-400" data-i="${i}">🗑️</button></div>`;
+      row.innerHTML=`<div><p class="font-bold">${s.name || 'Unnamed Event'}</p><p class="text-sm opacity-75">${s.start} - ${s.end}</p><p class="text-xs opacity-60">${s.days.map(d=>dn[d]).join(', ')}</p></div><div class="flex gap-2"><button class="edit text-cyan-400" data-i="${i}">✏️</button><button class="del text-red-400" data-i="${i}">🗑️</button></div>`;
       schedList.appendChild(row);
     });
     schedList.querySelectorAll('.edit').forEach(b=>b.onclick=e=>openEdit(+e.currentTarget.dataset.i));
@@ -762,13 +1010,13 @@ window.onload=function(){
   function saveSchedule(){localStorage.setItem('onAirSchedule',JSON.stringify(schedule));renderSchedule();}
   const openEdit=i=>{
     editIdx=i;settings.classList.add('opacity-0','pointer-events-none');editModal.classList.remove('opacity-0','pointer-events-none');
-    if(i===-1){editHeading.textContent='Add Schedule';startIn.value='08:00';endIn.value='09:00';dayChecks.forEach(c=>c.checked=false);}
-    else{editHeading.textContent='Edit Schedule';const s=schedule[i];startIn.value=s.start;endIn.value=s.end;dayChecks.forEach(c=>c.checked=s.days.includes(+c.dataset.day));}
+    if(i===-1){editHeading.textContent='Add Schedule';eventNameIn.value='';startIn.value='08:00';endIn.value='09:00';dayChecks.forEach(c=>c.checked=false);}
+    else{editHeading.textContent='Edit Schedule';const s=schedule[i];eventNameIn.value=s.name||'';startIn.value=s.start;endIn.value=s.end;dayChecks.forEach(c=>c.checked=s.days.includes(+c.dataset.day));}
   };
   $('save-schedule-btn').onclick=()=>{
-    const st=startIn.value, et=endIn.value, days=dayChecks.filter(c=>c.checked).map(c=>+c.dataset.day);
+    const name=eventNameIn.value||'Unnamed Event', st=startIn.value, et=endIn.value, days=dayChecks.filter(c=>c.checked).map(c=>+c.dataset.day);
     if(!st||!et||!days.length)return;
-    const obj={start:st,end:et,days};
+    const obj={name,start:st,end:et,days};
     editIdx===-1?schedule.push(obj):schedule[editIdx]=obj;saveSchedule();editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none');
   };
   $('cancel-schedule-btn').onclick=()=>{editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none')};
@@ -785,7 +1033,7 @@ window.onload=function(){
   function tick(){
     const now=new Date(), sec=now.getSeconds();
     const timeString=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-    const dateString=formatDate(now,dateFormatSel.value);
+    const dateString=formatDate(now,currentDateFormat);
     timeEl.textContent=timeString;
     dateEl.textContent=dateString;
     particleTimeEl.textContent=timeString;
@@ -806,7 +1054,6 @@ window.onload=function(){
     
     const onAir=manualToggle.checked||(schedToggle.checked&&inSchedule(now));
     classicOnAir.classList.toggle('hidden',!onAir);circOnAir.classList.toggle('hidden',!onAir);particleOnAir.classList.toggle('hidden',!onAir);nebulaOnAir.classList.toggle('hidden',!onAir);
-    classicOnAir.classList.toggle('pulsing-animation',onAir&&pulseToggle.checked);
     mainClock.classList.toggle('on-air-active-border',onAir);
     onAirText.textContent = "LIVE";
     const circSpan=circOnAir.querySelector('span');if(circSpan)circSpan.textContent="LIVE";
@@ -817,21 +1064,19 @@ window.onload=function(){
   setInterval(tick,1000);tick();
   neonGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--neon-color',div.dataset.color);localStorage.setItem('neonColor',div.dataset.color);[...neonGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
   onAirGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--on-air-color',div.dataset.color);localStorage.setItem('onAirColor',div.dataset.color);[...onAirGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
+  outlineGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--text-outline-color',div.dataset.color);localStorage.setItem('textOutlineColor',div.dataset.color);[...outlineGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
   bgGrid.onclick=e=>{const div=e.target.closest('[data-preset]');if(!div)return;document.body.classList.remove(...[...bgGrid.children].map(x=>x.dataset.preset));document.body.classList.add(div.dataset.preset);localStorage.setItem('bgPreset',div.dataset.preset);[...bgGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
   settingsBtn.onclick=()=>settings.classList.remove('opacity-0','pointer-events-none');
   closeSettings.onclick=()=>settings.classList.add('opacity-0','pointer-events-none');
   settings.onclick=e=>{if(e.target===settings)settings.classList.add('opacity-0','pointer-events-none')};
-  layoutSel.onchange=e=>{
-    const val=e.target.value;
-    document.body.classList.toggle('is-circular',val==='circular');
-    document.body.classList.toggle('is-particle',val==='particle');
-    document.body.classList.toggle('is-nebula',val==='nebula');
-    localStorage.setItem('layoutTheme',val);
-  };
-  fontSel.onchange=e=>root.style.setProperty('--body-font',e.target.value);
-  dateFormatSel.onchange=e=>localStorage.setItem('dateFormat',e.target.value);
   scaleSlider.oninput=e=>{const v=e.target.value;mainClock.style.transform=`scale(${v})`;circularWrap.style.transform=`scale(${v})`;particleWrap.style.transform=`scale(${v})`;nebulaWrap.style.transform=`scale(${v})`;scaleLbl.textContent=Math.round(v*100);localStorage.setItem('clockScale',v)};
   manualToggle.onchange=e=>localStorage.setItem('manualOnAirState',e.target.checked);
+  
+  // Text outline toggle
+  textOutlineToggle.onchange=e=>{
+    updateTextOutline();
+    localStorage.setItem('textOutlineEnabled',e.target.checked);
+  };
   
   // Background effects toggles
   firefliesToggle.onchange=e=>{
