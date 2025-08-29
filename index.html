@@ -251,16 +251,16 @@
    /* LIVE EVENT TICKER STYLES - GLASS DESIGN */
    .live-ticker {
      position: absolute;
-     top: 24px;
+     top: 22px;
      left: 24px;
      transform: translateX(-100%);
      backdrop-filter: blur(10px);
      background: rgba(255, 255, 255, 0.15);
      color: white;
-     padding: 8px 16px;
-     border-radius: 20px;
+     padding: 4px 16px;
+     border-radius: 10px;
      font-weight: 600;
-     font-size: 14px;
+     font-size: 15px;
      text-transform: uppercase;
      letter-spacing: 0.5px;
      box-shadow: 
@@ -284,9 +284,9 @@
    
    .live-ticker::before {
      content: "●";
-     color: var(--on-air-color);
+     color: white;
      margin-right: 8px;
-     font-size: 16px;
+     font-size: 18px;
      text-shadow: 0 0 8px var(--on-air-color);
      animation: pulse 2s infinite;
    }
@@ -440,7 +440,7 @@
    }
   </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen text-white p-4 bg-preset-galaxy">
+<body class="flex flex-col items-center justify-center min-h-screen text-white p-4 bg-preset-night-black">
 
 <!-- BACKGROUND EFFECTS -->
 <div id="fireflies-container" class="fireflies-container active"></div>
@@ -454,7 +454,7 @@
         <span id="ticker-text">Event Name</span>
       </div>
       
-      <div id="on-air-indicator" class="absolute top-6 right-8 flex items-center gap-3 hidden">
+      <div id="on-air-indicator" class="absolute top-6 right-8 flex items-center gap-3 hidden" style="top: 22px; right: 24px;">
         <div class="live-indicator-wrapper">
           <div class="dot w-4 h-4 rounded-full bg-current"></div><span id="on-air-text" class="text-3xl font-bold">LIVE</span>
         </div>
@@ -609,11 +609,11 @@
         <div data-preset="bg-preset-volcano" class="bg-preset-volcano w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-sky" class="bg-preset-sky w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-lime-teal" class="bg-preset-lime-teal w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
-        <div data-preset="bg-preset-galaxy" class="bg-preset-galaxy w-8 h-8 rounded border border-white/20 cursor-pointer ring"></div>
+        <div data-preset="bg-preset-galaxy" class="bg-preset-galaxy w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-peach" class="bg-preset-peach w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-ice" class="bg-preset-ice w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-dark-static" class="bg-preset-dark-static w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
-        <div data-preset="bg-preset-night-black" class="bg-preset-night-black w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
+        <div data-preset="bg-preset-night-black" class="bg-preset-night-black w-8 h-8 rounded border border-white/20 cursor-pointer ring"></div>
         <div data-preset="bg-preset-dark-navy" class="bg-preset-dark-navy w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-night-stars" class="bg-preset-night-stars w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-milky-way" class="bg-preset-milky-way w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
@@ -828,6 +828,15 @@ window.onload=function(){
   createFireflies();
   createParallaxStars();
   
+  // SCHEDULE VERSION AND REFRESH SYSTEM
+  const SCHEDULE_VERSION = '2.0';
+  const currentVersion = localStorage.getItem('scheduleVersion');
+  
+  if (currentVersion !== SCHEDULE_VERSION) {
+    localStorage.removeItem('onAirSchedule');
+    localStorage.setItem('scheduleVersion', SCHEDULE_VERSION);
+  }
+  
   let schedule=JSON.parse(localStorage.getItem('onAirSchedule'))||[
     {name:'PORANNY RING', start:'07:30',end:'08:55',days:[1,2,3,4,5]},
     {name:'EXPRESS BIEDRZYCKIEJ', start:'09:07',end:'10:35',days:[1,2,3,4,5]},
@@ -843,7 +852,7 @@ window.onload=function(){
   root.style.setProperty('--on-air-color',localStorage.getItem('onAirColor')||'#FF0000');
   root.style.setProperty('--text-outline-color',localStorage.getItem('textOutlineColor')||'#000000');
   root.style.setProperty('--body-font',currentFont);
-  const bg=localStorage.getItem('bgPreset')||'bg-preset-galaxy';document.body.classList.add(bg);
+  const bg=localStorage.getItem('bgPreset')||'bg-preset-night-black';document.body.classList.add(bg);
   [...bgGrid.children].forEach(d=>d.classList.toggle('ring',d.dataset.preset===bg));
   const scale=parseFloat(localStorage.getItem('clockScale')||1);scaleSlider.value=scale;scaleLbl.textContent=Math.round(scale*100);
   mainClock.style.transform=`scale(${scale})`;circularWrap.style.transform=`scale(${scale})`;particleWrap.style.transform=`scale(${scale})`;nebulaWrap.style.transform=`scale(${scale})`;
