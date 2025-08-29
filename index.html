@@ -59,15 +59,7 @@
     .glass-container.fullscreen-zoom{transform:scale(1.7)}
     .neon-text{text-shadow:0 0 5px var(--neon-color),0 0 10px var(--neon-color),0 0 20px var(--neon-color),0 0 40px var(--neon-color)}
     .neon-text.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
-    .on-air-active-border{
-      border:2px solid white;
-      box-shadow:
-        0 0 5px white,
-        0 0 10px white,
-        0 0 20px var(--on-air-color),
-        0 0 30px var(--on-air-color),
-        0 0 40px var(--on-air-color);
-    }
+    .on-air-active-border{border:2px solid white;box-shadow:0 0 5px white,0 0 10px white,0 0 20px var(--on-air-color),0 0 30px var(--on-air-color),0 0 40px var(--on-air-color)}
     .progress-dot{width:20px;height:15px;background:rgba(0,255,255,.25);border-radius:30%;margin:0 1px;transition:all .2s}
     .progress-dot.active{background:#fff;box-shadow:0 0 4px var(--neon-color),0 0 8px var(--neon-color)}
     .glass-btn{backdrop-filter:blur(5px);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);box-shadow:0 4px 16px rgba(31,38,135,.37);transition:all .3s;cursor:pointer}
@@ -76,22 +68,10 @@
     .modal-overlay{background:rgba(0,0,0,.55);backdrop-filter:blur(5px);transition:opacity .3s}
     .modal-content{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(31,38,135,.37)}
     .section-divider{border:none;height:1px;background:rgba(255,255,255,.26);margin:2rem 0}
-    #view-classic{display:block}
-    #view-circular{display:none}
-    #view-particle{display:none}
-    #view-nebula{display:none}
-    body.is-circular #view-classic{display:none}
-    body.is-circular #view-circular{display:flex}
-    body.is-circular #view-particle{display:none}
-    body.is-circular #view-nebula{display:none}
-    body.is-particle #view-classic{display:none}
-    body.is-particle #view-circular{display:none}
-    body.is-particle #view-particle{display:flex}
-    body.is-particle #view-nebula{display:none}
-    body.is-nebula #view-classic{display:none}
-    body.is-nebula #view-circular{display:none}
-    body.is-nebula #view-particle{display:none}
-    body.is-nebula #view-nebula{display:flex}
+    #view-classic{display:block}#view-circular{display:none}#view-particle{display:none}#view-nebula{display:none}
+    body.is-circular #view-classic{display:none}body.is-circular #view-circular{display:flex}body.is-circular #view-particle{display:none}body.is-circular #view-nebula{display:none}
+    body.is-particle #view-classic{display:none}body.is-particle #view-circular{display:none}body.is-particle #view-particle{display:flex}body.is-particle #view-nebula{display:none}
+    body.is-nebula #view-classic{display:none}body.is-nebula #view-circular{display:none}body.is-nebula #view-particle{display:none}body.is-nebula #view-nebula{display:flex}
     .circular-wrap{position:relative;width:min(64vh,64vw);aspect-ratio:1/1;margin:auto;display:flex;align-items:center;justify-content:center}
     .circular-face{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden}
     .circular-face::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at center,rgba(255,255,255,.05) 0%,transparent 70%)}
@@ -109,8 +89,6 @@
     .circular-indicator .dot{width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 0 0 .5px rgba(0,0,0,.3)}
     .circular-indicator span{text-shadow:1px 1px 2px rgba(0,0,0,.7)}
     .circular-indicator.hidden{opacity:0}
-    
-    /* PARTICLE THEME STYLES */
     .particle-wrap{position:relative;width:min(80vh,80vw);aspect-ratio:1/1;margin:auto;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .particle-container{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%}
     .particle-bg{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at center,rgba(0,0,0,.9) 0%,rgba(0,0,0,.95) 100%)}
@@ -119,350 +97,185 @@
     .particle-wave:nth-child(2){border-color:#0080ff;animation-delay:-1s;transform:scale(.9)}
     .particle-wave:nth-child(3){border-color:#8000ff;animation-delay:-2s;transform:scale(1)}
     .particle-wave:nth-child(4){border-color:#ff8000;animation-delay:-3s;transform:scale(1.1)}
-    @keyframes particle-wave{
-      0%{opacity:1;transform:scale(var(--scale,.8));filter:blur(0)}
-      50%{opacity:.6;filter:blur(1px)}
-      100%{opacity:.2;transform:scale(calc(var(--scale,.8) * 1.5));filter:blur(2px)}
-    }
+    @keyframes particle-wave{0%{opacity:1;transform:scale(var(--scale,.8));filter:blur(0)}50%{opacity:.6;filter:blur(1px)}100%{opacity:.2;transform:scale(calc(var(--scale,.8) * 1.5));filter:blur(2px)}}
     .particle-time{position:relative;z-index:10;font-size:4rem;font-weight:700;color:white;text-shadow:0 0 20px var(--neon-color),0 0 40px var(--neon-color),0 0 60px var(--neon-color);margin-bottom:1rem;letter-spacing:0.1em}
     .particle-time.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
     .particle-date{position:relative;z-index:10;font-size:2rem;color:rgba(255,255,255,.8);text-shadow:0 0 10px rgba(255,255,255,.5);margin-bottom:2rem}
     .particle-dots{position:absolute;inset:0;border-radius:50%;pointer-events:none}
     .particle-dot{position:absolute;width:3px;height:3px;background:var(--neon-color);border-radius:50%;box-shadow:0 0 10px var(--neon-color);animation:particle-float 6s ease-in-out infinite}
-    @keyframes particle-float{
-      0%,100%{opacity:.3;transform:translateY(0) scale(.8)}
-      50%{opacity:1;transform:translateY(-20px) scale(1.2)}
-    }
+    @keyframes particle-float{0%,100%{opacity:.3;transform:translateY(0) scale(.8)}50%{opacity:1;transform:translateY(-20px) scale(1.2)}}
     .particle-indicator{position:absolute;top:30px;right:30px;font:700 20px var(--body-font);text-transform:uppercase;color:white;transition:opacity .3s;display:flex;align-items:center;gap:15px}
     .particle-indicator .dot{width:18px;height:18px;border-radius:50%;background:white;box-shadow:0 0 20px var(--on-air-color)}
     .particle-indicator span{text-shadow:2px 2px 4px rgba(0,0,0,.8)}
     .particle-indicator.hidden{opacity:0}
-    
-    /* NEBULA THEME STYLES */
-    .nebula-wrap{
-      position:relative;
-      width:min(90vh,90vw);
-      aspect-ratio:1/1;
-      margin:auto;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      border-radius:50%
-    }
-    
-    .nebula-animation{
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      overflow:hidden
-    }
-    
-    .nebula-animation img{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:0;
-      transition:opacity 0.6s ease-in-out;
-      border-radius:50%
-    }
-    
-    .nebula-animation img.active{
-      opacity:1
-    }
-    
-    .nebula-content{
-      position:relative;
-      z-index:10;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center
-    }
-    
-    .nebula-time{
-      font-size:clamp(3rem,8vw,6rem);
-      font-weight:700;
-      color:#fff;
-      text-shadow:0 0 20px #fff,0 0 40px #fff,0 0 60px var(--neon-color);
-      letter-spacing:0.1em;
-      font-family:'Orbitron',monospace;
-      margin-bottom:1rem
-    }
-    
+    .nebula-wrap{position:relative;width:min(90vh,90vw);aspect-ratio:1/1;margin:auto;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:50%}
+    .nebula-animation{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+    .nebula-animation img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s ease-in-out;border-radius:50%}
+    .nebula-animation img.active{opacity:1}
+    .nebula-content{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .nebula-time{font-size:clamp(3rem,8vw,6rem);font-weight:700;color:#fff;text-shadow:0 0 20px #fff,0 0 40px #fff,0 0 60px var(--neon-color);letter-spacing:0.1em;font-family:'Orbitron',monospace;margin-bottom:1rem}
     .nebula-time.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
-    
-    .nebula-date{
-      font-size:clamp(1.2rem,3vw,2rem);
-      color:rgba(255,255,255,0.9);
-      text-shadow:0 0 15px rgba(255,255,255,0.7);
-      letter-spacing:0.05em;
-      white-space:nowrap
-    }
-    
-    .nebula-indicator{
-      position:absolute;
-      top:30px;
-      right:30px;
-      font:700 18px var(--body-font);
-      text-transform:uppercase;
-      color:white;
-      transition:opacity .3s;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-shadow:2px 2px 4px rgba(0,0,0,0.8)
-    }
-    
-    .nebula-indicator .dot{
-      width:16px;
-      height:16px;
-      border-radius:50%;
-      background:white;
-      box-shadow:0 0 20px var(--on-air-color)
-    }
-    
+    .nebula-date{font-size:clamp(1.2rem,3vw,2rem);color:rgba(255,255,255,0.9);text-shadow:0 0 15px rgba(255,255,255,0.7);letter-spacing:0.05em;white-space:nowrap}
+    .nebula-indicator{position:absolute;top:30px;right:30px;font:700 18px var(--body-font);text-transform:uppercase;color:white;transition:opacity .3s;display:flex;align-items:center;gap:12px;text-shadow:2px 2px 4px rgba(0,0,0,0.8)}
+    .nebula-indicator .dot{width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 0 20px var(--on-air-color)}
     .nebula-indicator.hidden{opacity:0}
-   
-   #current-date {
-     white-space: nowrap;
-     font-size: clamp(1.5rem, 4vw, 3rem);
-   }
-   
-   /* FLIP ANIMATION FOR LIVE TEXT */
-   @keyframes flip {
-     0%, 80% { transform: rotateY(0deg); }
-     90% { transform: rotateY(180deg); }
-     100% { transform: rotateY(360deg); }
-   }
-   
-   .live-indicator-wrapper {
-     display: inline-flex;
-     align-items: center;
-     gap: 12px;
-     animation: flip 5s infinite;
-     transform-style: preserve-3d;
-   }
-   
-   /* LIVE EVENT TICKER STYLES - GLASS DESIGN */
-   .live-ticker {
-     position: absolute;
-     top: 22px;
-     left: 24px;
-     transform: translateX(-100%);
-     backdrop-filter: blur(10px);
-     background: rgba(255, 255, 255, 0.15);
-     color: white;
-     padding: 4px 16px;
-     border-radius: 10px;
-     font-weight: 600;
-     font-size: 15px;
-     text-transform: uppercase;
-     letter-spacing: 0.5px;
-     box-shadow: 
-       0 4px 20px rgba(255, 255, 255, 0.1),
-       0 0 15px rgba(255, 255, 255, 0.05);
-     border: 1px solid rgba(255, 255, 255, 0.2);
-     z-index: 15;
-     opacity: 0;
-     transition: all 0.8s ease-in-out;
-     max-width: 250px;
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
-     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-   }
-   
-   .live-ticker.show {
-     transform: translateX(0);
-     opacity: 1;
-   }
-   
-   .live-ticker::before {
-     content: "●";
-     color: white;
-     margin-right: 8px;
-     font-size: 18px;
-     text-shadow: 0 0 8px var(--on-air-color);
-     animation: pulse 2s infinite;
-   }
-   
-   @keyframes pulse {
-     0%, 100% { opacity: 1; }
-     50% { opacity: 0.6; }
-   }
-   
-   /* TOGGLE BUTTONS STYLES */
-   .toggle-group {
-     display: flex;
-     flex-wrap: wrap;
-     gap: 8px;
-     margin-bottom: 16px;
-   }
-   
-   .toggle-btn {
-     padding: 8px 12px;
-     font-size: 13px;
-     font-weight: 600;
-     border: 1px solid rgba(255, 255, 255, 0.2);
-     background: rgba(255, 255, 255, 0.05);
-     color: rgba(255, 255, 255, 0.7);
-     border-radius: 8px;
-     cursor: pointer;
-     transition: all 0.3s ease;
-     text-align: center;
-     min-width: fit-content;
-   }
-   
-   .toggle-btn:hover {
-     background: rgba(255, 255, 255, 0.1);
-     border-color: rgba(255, 255, 255, 0.3);
-   }
-   
-   .toggle-btn.active {
-     background: var(--neon-color);
-     border-color: var(--neon-color);
-     color: #000;
-     box-shadow: 0 0 8px var(--neon-color);
-   }
-   
-   /* ENHANCED TOGGLE SWITCH STYLES WITH PROPER PILL-SHAPED FRAME */
-   .toggle-switch-frame {
-     border: 1px solid rgba(255, 255, 255, 1);
-     border-radius: 50px;
-     padding: 1px;
-     display: inline-block;
-     width: 48px;
-     height: 28.5px;
-   }
-   
-   .toggle-switch-frame .w-11 {
-     border: none !important;
-     width: 44px !important;
-     height: 24px !important;
-   }
-   
-   /* FIREFLIES EFFECT */
-   .fireflies-container {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100vw;
-     height: 100vh;
-     pointer-events: none;
-     z-index: -1;
-     overflow: hidden;
-     display: none;
-   }
-   
-   .fireflies-container.active {
-     display: block;
-   }
-   
-   .firefly {
-     position: absolute;
-     width: 3px;
-     height: 3px;
-     border-radius: 50%;
-     background: #fff;
-     box-shadow: 0 0 8px #fff, 0 0 16px #fff;
-     animation: firefly-float 8s linear infinite;
-   }
-   
-   @keyframes firefly-float {
-     0% {
-       transform: translateY(100vh) translateX(0px);
-       opacity: 0;
-     }
-     10% {
-       opacity: 1;
-     }
-     90% {
-       opacity: 1;
-     }
-     100% {
-       transform: translateY(-100px) translateX(20px);
-       opacity: 0;
-     }
-   }
-   
-   /* PARALLAX STARS EFFECT */
-   .parallax-stars-container {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100vw;
-     height: 100vh;
-     pointer-events: none;
-     z-index: -2;
-     overflow: hidden;
-     display: none;
-   }
-   
-   .parallax-stars-container.active {
-     display: block;
-   }
-   
-   .star {
-     position: absolute;
-     background: #fff;
-     border-radius: 50%;
-     box-shadow: 0 0 4px #fff;
-     animation: star-move linear infinite;
-   }
-   
-   .star.type-1 {
-     width: 1px;
-     height: 1px;
-   }
-   
-   .star.type-2 {
-     width: 2px;
-     height: 2px;
-   }
-   
-   .star.type-3 {
-     width: 3px;
-     height: 3px;
-   }
-   
-   @keyframes star-move {
-     from {
-       transform: translateY(100vh);
-     }
-     to {
-       transform: translateY(-100px);
-     }
-   }
+    #current-date{white-space:nowrap;font-size:clamp(1.5rem,4vw,3rem)}
+    @keyframes flip{0%,80%{transform:rotateY(0deg)}90%{transform:rotateY(360deg)}100%{transform:rotateY(360deg)}}
+    .live-indicator-wrapper{display:inline-flex;align-items:center;gap:12px;animation:flip 5s infinite;transform-style:preserve-3d}
+    
+    /* TOP BAR CONTAINER FOR TICKER AND LIVE INDICATOR */
+    #top-bar-container {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 20;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.8s ease-in-out;
+      min-height: 31px;
+    }
+    
+    #top-bar-container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* TICKER CONTAINER (LEFT SIDE) */
+    #live-ticker {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 
+        0 4px 20px rgba(255, 255, 255, 0.1),
+        0 0 15px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    #live-ticker::before {
+      content: "●";
+      color: white;
+      font-size: 20px;
+      text-shadow: 0 0 8px var(--on-air-color);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    
+    /* LIVE INDICATOR CONTAINER (RIGHT SIDE) */
+    #on-air-indicator {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 
+        0 4px 20px rgba(255, 255, 255, 0.1),
+        0 0 15px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    .live-indicator-wrapper .dot {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px white, 0 0 20px white;
+      animation: pulse 2s infinite;
+    }
+    
+    .live-indicator-wrapper span {
+      font-weight: bold;
+      color: white;
+    }
+    
+    .toggle-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+    .toggle-btn{padding:8px 12px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);border-radius:8px;cursor:pointer;transition:all 0.3s ease;text-align:center;min-width:fit-content}
+    .toggle-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.3)}
+    .toggle-btn.active{background:var(--neon-color);border-color:var(--neon-color);color:#000;box-shadow:0 0 8px var(--neon-color)}
+    .toggle-switch-frame{border:1px solid rgba(255,255,255,0.4);border-radius:50px;padding:1px;display:inline-block;width:50px;height:26px;background:rgba(255,255,255,0.05)}
+    .toggle-switch-input{display:none}
+    .toggle-switch-inner{width:46px;height:22px;background:rgba(255,255,255,0.2);border-radius:50px;position:relative;transition:all 0.3s ease;cursor:pointer}
+    .switch-handle{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.2);transition:all 0.3s ease}
+    .toggle-switch-input:checked+.toggle-switch-inner{background:var(--neon-color)}
+    .toggle-switch-input:checked+.toggle-switch-inner .switch-handle{left:26px}
+    .schedule-event-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:12px;margin-bottom:8px}
+    .schedule-event-info{flex:1}
+    .schedule-event-info p{margin:0;line-height:1.4}
+    .schedule-event-name{text-transform:uppercase;font-weight:700;letter-spacing:0.05em;color:#fff;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+    .schedule-event-name .dot{width:8px;height:8px;background:var(--on-air-color);border-radius:50%;box-shadow:0 0 6px var(--on-air-color)}
+    .fireflies-container{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1;overflow:hidden;display:none}
+    .fireflies-container.active{display:block}
+    .firefly{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 16px #fff;animation:firefly-float 8s linear infinite}
+    @keyframes firefly-float{0%{transform:translateY(100vh) translateX(0px);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) translateX(20px);opacity:0}}
+    .parallax-stars-container{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-2;overflow:hidden;display:none}
+    .parallax-stars-container.active{display:block}
+    .star{position:absolute;background:#fff;border-radius:50%;box-shadow:0 0 4px #fff;animation:star-move linear infinite}
+    .star.type-1{width:1px;height:1px}
+    .star.type-2{width:2px;height:2px}
+    .star.type-3{width:3px;height:3px}
+    @keyframes star-move{from{transform:translateY(100vh)}to{transform:translateY(-100px)}}
   </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen text-white p-4 bg-preset-night-black">
 
-<!-- BACKGROUND EFFECTS -->
 <div id="fireflies-container" class="fireflies-container active"></div>
 <div id="parallax-stars-container" class="parallax-stars-container active"></div>
 
 <div id="views" class="w-full max-w-3xl">
   <div id="view-classic">
     <div id="main-clock-container" class="glass-container p-10 md:p-16 rounded-3xl w-full max-w-3xl space-y-8 text-center">
-      <!-- LIVE EVENT TICKER -->
-      <div id="live-ticker" class="live-ticker">
-        <span id="ticker-text">Event Name</span>
-      </div>
       
-      <div id="on-air-indicator" class="absolute top-6 right-8 flex items-center gap-3 hidden" style="top: 22px; right: 24px;">
-        <div class="live-indicator-wrapper">
-          <div class="dot w-4 h-4 rounded-full bg-current"></div><span id="on-air-text" class="text-3xl font-bold">LIVE</span>
+      <!-- TOP BAR CONTAINER WITH TICKER AND LIVE INDICATOR -->
+      <div id="top-bar-container">
+        <!-- TICKER CONTAINER (LEFT) -->
+        <div id="live-ticker">
+          <span id="ticker-text">FUTBOLOGIA</span>
+        </div>
+        
+        <!-- LIVE INDICATOR CONTAINER (RIGHT) -->
+        <div id="on-air-indicator" class="hidden">
+          <div class="live-indicator-wrapper">
+            <div class="dot"></div>
+            <span id="on-air-text">LIVE</span>
+          </div>
         </div>
       </div>
+      
       <div class="space-y-2 relative z-10">
         <p id="current-time" class="neon-text text-7xl md:text-9xl leading-none tracking-wide"></p>
         <p id="current-date" class="text-3xl md:text-5xl opacity-80"></p>
       </div>
+      
       <div id="progress-dots-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center w-11/12"></div>
     </div>
   </div>
@@ -470,18 +283,10 @@
   <div id="view-circular" role="group" aria-label="Half-dial Clock">
     <div class="circular-wrap" id="circular-wrap">
       <div class="circular-face">
-        <div class="circular-arc outer"></div>
-        <div class="circular-arc inner"></div>
-        <div class="circular-ticks"></div>
-        <div id="handHour"   class="circular-hand hour"></div>
-        <div id="handMinute" class="circular-hand minute"></div>
-        <div id="handSecond" class="circular-hand second"></div>
+        <div class="circular-arc outer"></div><div class="circular-arc inner"></div><div class="circular-ticks"></div>
+        <div id="handHour" class="circular-hand hour"></div><div id="handMinute" class="circular-hand minute"></div><div id="handSecond" class="circular-hand second"></div>
         <div class="circular-pivot"></div>
-        <div id="circIndicator" class="circular-indicator hidden">
-          <div class="live-indicator-wrapper">
-            <div class="dot"></div><span>LIVE</span>
-          </div>
-        </div>
+        <div id="circIndicator" class="circular-indicator hidden"><div class="live-indicator-wrapper"><div class="dot"></div><span>LIVE</span></div></div>
       </div>
     </div>
   </div>
@@ -490,43 +295,21 @@
     <div class="particle-wrap" id="particle-wrap">
       <div class="particle-container">
         <div class="particle-bg"></div>
-        <div class="particle-wave"></div>
-        <div class="particle-wave"></div>
-        <div class="particle-wave"></div>
-        <div class="particle-wave"></div>
+        <div class="particle-wave"></div><div class="particle-wave"></div><div class="particle-wave"></div><div class="particle-wave"></div>
         <div class="particle-dots" id="particle-dots"></div>
-        <p id="particle-time" class="particle-time"></p>
-        <p id="particle-date" class="particle-date"></p>
-        <div id="particleIndicator" class="particle-indicator hidden">
-          <div class="live-indicator-wrapper">
-            <div class="dot"></div><span>LIVE</span>
-          </div>
-        </div>
+        <p id="particle-time" class="particle-time"></p><p id="particle-date" class="particle-date"></p>
+        <div id="particleIndicator" class="particle-indicator hidden"><div class="live-indicator-wrapper"><div class="dot"></div><span>LIVE</span></div></div>
       </div>
     </div>
   </div>
 
-  <!-- NEBULA VIEW -->
   <div id="view-nebula" role="group" aria-label="Nebula Clock">
     <div class="nebula-wrap" id="nebula-wrap">
       <div class="nebula-animation" id="nebula-animation">
-        <img src="nebula1.png" alt="" class="active">
-        <img src="nebula2.png" alt="">
-        <img src="nebula3.png" alt="">
-        <img src="nebula4.png" alt="">
-        <img src="nebula5.png" alt="">
+        <img src="nebula1.png" alt="" class="active"><img src="nebula2.png" alt=""><img src="nebula3.png" alt=""><img src="nebula4.png" alt=""><img src="nebula5.png" alt="">
       </div>
-      
-      <div class="nebula-content">
-        <p id="nebula-time" class="nebula-time"></p>
-        <p id="nebula-date" class="nebula-date"></p>
-      </div>
-      
-      <div id="nebulaIndicator" class="nebula-indicator hidden">
-        <div class="live-indicator-wrapper">
-          <div class="dot"></div><span>LIVE</span>
-        </div>
-      </div>
+      <div class="nebula-content"><p id="nebula-time" class="nebula-time"></p><p id="nebula-date" class="nebula-date"></p></div>
+      <div id="nebulaIndicator" class="nebula-indicator hidden"><div class="live-indicator-wrapper"><div class="dot"></div><span>LIVE</span></div></div>
     </div>
   </div>
 </div>
@@ -542,10 +325,7 @@
     <h2 class="text-2xl font-semibold mb-4 text-center">Settings</h2>
     <div class="mb-6">
       <h3 class="text-xl font-bold mb-3 text-center">Main Display</h3>
-      <label class="block mb-4">
-        Clock Size (<span id="scale-label-val">100</span>%)
-        <input id="scale-slider" type="range" min="0.5" max="2" step="0.1" value="1" class="w-full">
-      </label>
+      <label class="block mb-4">Clock Size (<span id="scale-label-val">100</span>%)<input id="scale-slider" type="range" min="0.5" max="2" step="0.1" value="1" class="w-full"></label>
       <p class="mb-1 font-semibold">Neon Color:</p>
       <div id="neon-color-grid" class="grid grid-cols-5 gap-2 mb-4">
         <div data-color="#00FFFF" style="background:#00FFFF" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
@@ -559,24 +339,15 @@
         <div data-color="#008080" style="background:#008080" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-color="#800080" style="background:#800080" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
-      
-      <!-- TEXT OUTLINE SECTION -->
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">Text Outline</p>
-        <div class="toggle-switch-frame">
-          <label class="inline-flex items-center cursor-pointer">
-            <input id="text-outline-toggle" type="checkbox" class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div>
-          </label>
-        </div>
+        <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="text-outline-toggle" type="checkbox" class="sr-only peer"><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div></label></div>
       </div>
       <p class="mb-1 font-semibold">Outline Color:</p>
       <div id="outline-color-grid" class="grid grid-cols-2 gap-2 mb-4">
         <div data-color="#000000" style="background:#000000" class="w-8 h-8 rounded border border-white/20 cursor-pointer ring"></div>
         <div data-color="#FFFFFF" style="background:#FFFFFF" class="w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
-      
-      <!-- FONT STYLE TOGGLE BUTTONS -->
       <p class="mb-2 font-semibold">Font Style:</p>
       <div id="font-toggle-group" class="toggle-group">
         <div class="toggle-btn active" data-font="'Oxanium', monospace">Oxanium</div>
@@ -584,8 +355,6 @@
         <div class="toggle-btn" data-font="'Russo One', sans-serif">Russo One</div>
         <div class="toggle-btn" data-font="'Share Tech Mono', monospace">Share Tech</div>
       </div>
-      
-      <!-- THEME/LAYOUT TOGGLE BUTTONS -->
       <p class="mb-2 font-semibold">Theme / Layout:</p>
       <div id="layout-toggle-group" class="toggle-group">
         <div class="toggle-btn active" data-layout="classic">Classic</div>
@@ -618,26 +387,14 @@
         <div data-preset="bg-preset-night-stars" class="bg-preset-night-stars w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-milky-way" class="bg-preset-milky-way w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
-      
-      <!-- BACKGROUND EFFECTS SECTION -->
       <h4 class="text-lg font-bold mb-2 text-center">Background Effects</h4>
       <div class="flex items-center justify-between mb-3">
         <p class="text-lg">Fireflies Effect</p>
-        <div class="toggle-switch-frame">
-          <label class="inline-flex items-center cursor-pointer">
-            <input id="fireflies-toggle" type="checkbox" class="sr-only peer" checked>
-            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-500"></div>
-          </label>
-        </div>
+        <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="fireflies-toggle" type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-500"></div></label></div>
       </div>
       <div class="flex items-center justify-between">
         <p class="text-lg">Parallax Stars</p>
-        <div class="toggle-switch-frame">
-          <label class="inline-flex items-center cursor-pointer">
-            <input id="parallax-stars-toggle" type="checkbox" class="sr-only peer" checked>
-            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
-          </label>
-        </div>
+        <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="parallax-stars-toggle" type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div></label></div>
       </div>
     </div>
     <hr class="section-divider">
@@ -645,15 +402,8 @@
       <h3 class="text-xl font-bold mb-3 text-center">Time & Format</h3>
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">24-hour time</p>
-        <div class="toggle-switch-frame">
-          <label class="inline-flex items-center cursor-pointer">
-            <input id="time-format-toggle" type="checkbox" class="sr-only peer" checked>
-            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
-          </label>
-        </div>
+        <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="time-format-toggle" type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div></label></div>
       </div>
-      
-      <!-- DATE FORMAT TOGGLE BUTTONS -->
       <p class="mb-2 font-semibold">Date Format:</p>
       <div id="date-toggle-group" class="toggle-group">
         <div class="toggle-btn" data-format="en-GB">22/08/2025</div>
@@ -670,12 +420,7 @@
       <h3 class="text-xl font-bold mb-3 text-center">"ON AIR" Schedule</h3>
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">Enable Schedule</p>
-        <div class="toggle-switch-frame">
-          <label class="inline-flex items-center cursor-pointer">
-            <input id="schedule-enabled-toggle" type="checkbox" class="sr-only peer" checked>
-            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-          </label>
-        </div>
+        <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="schedule-enabled-toggle" type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div></label></div>
       </div>
       <div id="schedule-list" class="space-y-2 mb-4"></div>
       <button id="add-schedule-btn" class="glass-btn w-full py-2 rounded font-bold">Add New Schedule</button>
@@ -685,12 +430,7 @@
       <h3 class="text-xl font-bold mb-3 text-center">"ON AIR" Indicator</h3>
       <div class="flex items-center justify-between mb-4">
         <p class="text-lg">Manual "ON AIR"</p>
-        <div class="toggle-switch-frame">
-          <label class="inline-flex items-center cursor-pointer">
-            <input id="manual-on-air-toggle" type="checkbox" class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
-          </label>
-        </div>
+        <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="manual-on-air-toggle" type="checkbox" class="sr-only peer"><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div></label></div>
       </div>
       <p class="mb-1 font-semibold">Indicator Color:</p>
       <div id="on-air-color-grid" class="grid grid-cols-5 gap-2 mb-4">
@@ -714,15 +454,9 @@
   <div class="modal-content w-full max-w-sm p-6 rounded-2xl">
     <h2 id="edit-schedule-heading" class="text-2xl font-semibold mb-4 text-center">Add Schedule</h2>
     <div class="space-y-4">
-      <label class="block">Event Name
-        <input id="event-name-input" type="text" class="glass-container p-2 w-full rounded" placeholder="e.g., Morning Show">
-      </label>
-      <label class="block">Start Time
-        <input id="start-time-input" type="time" class="glass-container p-2 w-full rounded">
-      </label>
-      <label class="block">End Time
-        <input id="end-time-input" type="time" class="glass-container p-2 w-full rounded">
-      </label>
+      <label class="block">Event Name<input id="event-name-input" type="text" class="glass-container p-2 w-full rounded" placeholder="e.g., Morning Show"></label>
+      <label class="block">Start Time<input id="start-time-input" type="time" class="glass-container p-2 w-full rounded"></label>
+      <label class="block">End Time<input id="end-time-input" type="time" class="glass-container p-2 w-full rounded"></label>
       <p class="text-lg mb-1">Days</p>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
         <label class="flex items-center gap-2"><input type="checkbox" data-day="0" class="rounded"><span>Sun</span></label>
@@ -744,110 +478,37 @@
 <script>
 window.onload=function(){
   const $=id=>document.getElementById(id);
-  const timeEl=$('current-time'), dateEl=$('current-date');
-  const particleTimeEl=$('particle-time'), particleDateEl=$('particle-date');
-  const nebulaTimeEl=$('nebula-time'), nebulaDateEl=$('nebula-date');
-  const dotsHolder=$('progress-dots-container'); for(let i=0;i<60;i++){const d=document.createElement('div');d.className='progress-dot';dotsHolder.appendChild(d)} const dots=[...dotsHolder.children];
-  const hHand=$('handHour'), mHand=$('handMinute'), sHand=$('handSecond');
-  const classicOnAir=$('on-air-indicator'), circOnAir=$('circIndicator'), particleOnAir=$('particleIndicator'), nebulaOnAir=$('nebulaIndicator');
-  const onAirText=$('on-air-text');
-  const manualToggle=$('manual-on-air-toggle'), schedToggle=$('schedule-enabled-toggle');
-  const firefliesToggle=$('fireflies-toggle'), parallaxStarsToggle=$('parallax-stars-toggle');
-  const textOutlineToggle=$('text-outline-toggle');
-  const settings=$('settings-modal'), settingsBtn=$('settings-btn'), closeSettings=$('close-modal-btn');
-  const scaleSlider=$('scale-slider'), scaleLbl=$('scale-label-val');
-  const neonGrid=$('neon-color-grid'), onAirGrid=$('on-air-color-grid'), bgGrid=$('bg-preset-grid'), outlineGrid=$('outline-color-grid');
-  const mainClock=$('main-clock-container');
-  const circularWrap=$('circular-wrap'), particleWrap=$('particle-wrap'), nebulaWrap=$('nebula-wrap');
-  const particleDotsContainer=$('particle-dots');
-  const firefliesContainer=$('fireflies-container'), parallaxStarsContainer=$('parallax-stars-container');
-  const schedList=$('schedule-list'), addSchedBtn=$('add-schedule-btn');
-  const editModal=$('edit-schedule-modal'), startIn=$('start-time-input'), endIn=$('end-time-input'), eventNameIn=$('event-name-input');
-  const editHeading=$('edit-schedule-heading');
+  const timeEl=$('current-time'),dateEl=$('current-date'),particleTimeEl=$('particle-time'),particleDateEl=$('particle-date'),nebulaTimeEl=$('nebula-time'),nebulaDateEl=$('nebula-date');
+  const dotsHolder=$('progress-dots-container');for(let i=0;i<60;i++){const d=document.createElement('div');d.className='progress-dot';dotsHolder.appendChild(d)}const dots=[...dotsHolder.children];
+  const hHand=$('handHour'),mHand=$('handMinute'),sHand=$('handSecond');
+  const classicOnAir=$('on-air-indicator'),circOnAir=$('circIndicator'),particleOnAir=$('particleIndicator'),nebulaOnAir=$('nebulaIndicator'),onAirText=$('on-air-text');
+  const manualToggle=$('manual-on-air-toggle'),schedToggle=$('schedule-enabled-toggle'),firefliesToggle=$('fireflies-toggle'),parallaxStarsToggle=$('parallax-stars-toggle'),textOutlineToggle=$('text-outline-toggle');
+  const settings=$('settings-modal'),settingsBtn=$('settings-btn'),closeSettings=$('close-modal-btn');
+  const scaleSlider=$('scale-slider'),scaleLbl=$('scale-label-val'),neonGrid=$('neon-color-grid'),onAirGrid=$('on-air-color-grid'),bgGrid=$('bg-preset-grid'),outlineGrid=$('outline-color-grid');
+  const mainClock=$('main-clock-container'),circularWrap=$('circular-wrap'),particleWrap=$('particle-wrap'),nebulaWrap=$('nebula-wrap'),particleDotsContainer=$('particle-dots');
+  const firefliesContainer=$('fireflies-container'),parallaxStarsContainer=$('parallax-stars-container');
+  const schedList=$('schedule-list'),addSchedBtn=$('add-schedule-btn'),editModal=$('edit-schedule-modal'),startIn=$('start-time-input'),endIn=$('end-time-input'),eventNameIn=$('event-name-input'),editHeading=$('edit-schedule-heading');
   const dayChecks=[...editModal.querySelectorAll('input[type="checkbox"]')];
   
-  // Live ticker elements
-  const liveTicker = $('live-ticker');
-  const tickerText = $('ticker-text');
-  let tickerInterval = null;
-  let lastTickerShow = 0;
+  // NEW: Top bar container and elements
+  const topBarContainer=$('top-bar-container');
+  const liveTicker=$('live-ticker'),tickerText=$('ticker-text');
+  let tickerInterval=null,lastTickerShow=0;
   
-  // Toggle button groups
-  const fontToggleGroup=$('font-toggle-group');
-  const layoutToggleGroup=$('layout-toggle-group');
-  const dateToggleGroup=$('date-toggle-group');
-  
-  // Current settings
-  let currentFont = localStorage.getItem('fontStyle')||"'Oxanium', monospace";
-  let currentLayout = localStorage.getItem('layoutTheme')||'classic';
-  let currentDateFormat = localStorage.getItem('dateFormat')||'long-weekday';
-  
-  // Nebula animation
+  const fontToggleGroup=$('font-toggle-group'),layoutToggleGroup=$('layout-toggle-group'),dateToggleGroup=$('date-toggle-group');
+  let currentFont=localStorage.getItem('fontStyle')||"'Oxanium', monospace",currentLayout=localStorage.getItem('layoutTheme')||'classic',currentDateFormat=localStorage.getItem('dateFormat')||'long-weekday';
   const nebulaFrames=document.querySelectorAll('#nebula-animation img');
   let currentNebulaFrame=0;
-  
-  function cycleNebulaFrames(){
-    if(nebulaFrames.length===0)return;
-    nebulaFrames[currentNebulaFrame].classList.remove('active');
-    currentNebulaFrame=(currentNebulaFrame+1)%nebulaFrames.length;
-    nebulaFrames[currentNebulaFrame].classList.add('active');
-  }
-  
-  // Start nebula animation
-  setInterval(cycleNebulaFrames, 500);
-  
-  // Background effects functions
-  function createFireflies(){
-    firefliesContainer.innerHTML='';
-    for(let i=0;i<30;i++){
-      const firefly=document.createElement('div');
-      firefly.className='firefly';
-      firefly.style.left=Math.random()*100+'%';
-      firefly.style.animationDelay=Math.random()*8+'s';
-      firefly.style.animationDuration=(Math.random()*4+6)+'s';
-      firefliesContainer.appendChild(firefly);
-    }
-  }
-  
-  function createParallaxStars(){
-    parallaxStarsContainer.innerHTML='';
-    for(let type=1;type<=3;type++){
-      const quantity=type===1?100:(type===2?80:60);
-      for(let i=0;i<quantity;i++){
-        const star=document.createElement('div');
-        star.className=`star type-${type}`;
-        star.style.left=Math.random()*100+'%';
-        star.style.animationDuration=(Math.random()*20+30)+'s';
-        star.style.animationDelay=Math.random()*-30+'s';
-        parallaxStarsContainer.appendChild(star);
-      }
-    }
-  }
-  
-  // Initialize effects
-  createFireflies();
-  createParallaxStars();
-  
-  // SCHEDULE VERSION AND REFRESH SYSTEM
-  const SCHEDULE_VERSION = '2.0';
-  const currentVersion = localStorage.getItem('scheduleVersion');
-  
-  if (currentVersion !== SCHEDULE_VERSION) {
-    localStorage.removeItem('onAirSchedule');
-    localStorage.setItem('scheduleVersion', SCHEDULE_VERSION);
-  }
-  
-  let schedule=JSON.parse(localStorage.getItem('onAirSchedule'))||[
-    {name:'PORANNY RING', start:'07:30',end:'08:55',days:[1,2,3,4,5]},
-    {name:'EXPRESS BIEDRZYCKIEJ', start:'09:07',end:'10:35',days:[1,2,3,4,5]},
-    {name:'RISERCZ', start:'21:00',end:'22:30',days:[1]},
-    {name:'NOCNA ZMIANA', start:'21:00',end:'22:30',days:[3]},
-    {name:'DEBATA STARCIE', start:'20:00',end:'21:30',days:[4]}
-  ];
+  function cycleNebulaFrames(){if(nebulaFrames.length===0)return;nebulaFrames[currentNebulaFrame].classList.remove('active');currentNebulaFrame=(currentNebulaFrame+1)%nebulaFrames.length;nebulaFrames[currentNebulaFrame].classList.add('active')}
+  setInterval(cycleNebulaFrames,500);
+  function createFireflies(){firefliesContainer.innerHTML='';for(let i=0;i<30;i++){const firefly=document.createElement('div');firefly.className='firefly';firefly.style.left=Math.random()*100+'%';firefly.style.animationDelay=Math.random()*8+'s';firefly.style.animationDuration=(Math.random()*4+6)+'s';firefliesContainer.appendChild(firefly)}}
+  function createParallaxStars(){parallaxStarsContainer.innerHTML='';for(let type=1;type<=3;type++){const quantity=type===1?100:(type===2?80:60);for(let i=0;i<quantity;i++){const star=document.createElement('div');star.className=`star type-${type}`;star.style.left=Math.random()*100+'%';star.style.animationDuration=(Math.random()*20+30)+'s';star.style.animationDelay=Math.random()*-30+'s';parallaxStarsContainer.appendChild(star)}}}
+  createFireflies();createParallaxStars();
+  const SCHEDULE_VERSION='2.1',currentVersion=localStorage.getItem('scheduleVersion');
+  if(currentVersion!==SCHEDULE_VERSION){localStorage.removeItem('onAirSchedule');localStorage.setItem('scheduleVersion',SCHEDULE_VERSION)}
+  let schedule=JSON.parse(localStorage.getItem('onAirSchedule'))||[{name:'PORANNY RING',start:'07:30',end:'08:55',days:[1,2,3,4,5],enabled:true},{name:'EXPRESS BIEDRZYCKIEJ',start:'09:07',end:'10:35',days:[1,2,3,4,5],enabled:true},{name:'RISERCZ',start:'21:00',end:'22:30',days:[1],enabled:true},{name:'NOCNA ZMIANA',start:'21:00',end:'22:30',days:[3],enabled:true},{name:'DEBATA STARCIE',start:'20:00',end:'21:30',days:[4],enabled:true}];
   let editIdx=-1;
   const root=document.documentElement;
-  
-  // SET NEW DEFAULTS FOR FIRST TIME USERS
   root.style.setProperty('--neon-color',localStorage.getItem('neonColor')||'#FFFFFF');
   root.style.setProperty('--on-air-color',localStorage.getItem('onAirColor')||'#FF0000');
   root.style.setProperty('--text-outline-color',localStorage.getItem('textOutlineColor')||'#000000');
@@ -856,249 +517,68 @@ window.onload=function(){
   [...bgGrid.children].forEach(d=>d.classList.toggle('ring',d.dataset.preset===bg));
   const scale=parseFloat(localStorage.getItem('clockScale')||1);scaleSlider.value=scale;scaleLbl.textContent=Math.round(scale*100);
   mainClock.style.transform=`scale(${scale})`;circularWrap.style.transform=`scale(${scale})`;particleWrap.style.transform=`scale(${scale})`;nebulaWrap.style.transform=`scale(${scale})`;
-  document.body.classList.toggle('is-circular',currentLayout==='circular');
-  document.body.classList.toggle('is-particle',currentLayout==='particle');
-  document.body.classList.toggle('is-nebula',currentLayout==='nebula');
+  document.body.classList.toggle('is-circular',currentLayout==='circular');document.body.classList.toggle('is-particle',currentLayout==='particle');document.body.classList.toggle('is-nebula',currentLayout==='nebula');
   manualToggle.checked=JSON.parse(localStorage.getItem('manualOnAirState'))||false;
-  
-  // Text outline state
   textOutlineToggle.checked=JSON.parse(localStorage.getItem('textOutlineEnabled'))||false;
-  
-  // Background effects state - ENABLED BY DEFAULT
-  firefliesToggle.checked=localStorage.getItem('firefliesEnabled')!==null ? JSON.parse(localStorage.getItem('firefliesEnabled')) : true;
-  parallaxStarsToggle.checked=localStorage.getItem('parallaxStarsEnabled')!==null ? JSON.parse(localStorage.getItem('parallaxStarsEnabled')) : true;
-  firefliesContainer.classList.toggle('active',firefliesToggle.checked);
-  parallaxStarsContainer.classList.toggle('active',parallaxStarsToggle.checked);
-  
-  // Apply text outline
-  function updateTextOutline(){
-    const hasOutline = textOutlineToggle.checked;
-    timeEl.classList.toggle('text-outline', hasOutline);
-    particleTimeEl.classList.toggle('text-outline', hasOutline);
-    nebulaTimeEl.classList.toggle('text-outline', hasOutline);
-  }
+  firefliesToggle.checked=localStorage.getItem('firefliesEnabled')!==null?JSON.parse(localStorage.getItem('firefliesEnabled')):true;
+  parallaxStarsToggle.checked=localStorage.getItem('parallaxStarsEnabled')!==null?JSON.parse(localStorage.getItem('parallaxStarsEnabled')):true;
+  firefliesContainer.classList.toggle('active',firefliesToggle.checked);parallaxStarsContainer.classList.toggle('active',parallaxStarsToggle.checked);
+  function updateTextOutline(){const hasOutline=textOutlineToggle.checked;timeEl.classList.toggle('text-outline',hasOutline);particleTimeEl.classList.toggle('text-outline',hasOutline);nebulaTimeEl.classList.toggle('text-outline',hasOutline)}
   updateTextOutline();
   
-  // Live ticker functions
-  function showTicker(eventName) {
-    if (!eventName || currentLayout !== 'classic') return;
-    
-    tickerText.textContent = eventName;
-    liveTicker.classList.add('show');
-    
-    setTimeout(() => {
-      liveTicker.classList.remove('show');
-    }, 10000); // Show for 10 seconds
+  // UPDATED: Top bar ticker system
+  function showTopBar(eventName){
+    if(!eventName||currentLayout!=='classic')return;
+    tickerText.textContent=eventName;
+    topBarContainer.classList.add('show');
+    setTimeout(()=>{topBarContainer.classList.remove('show')},10000)
   }
   
-  function startTickerSystem() {
-    if (tickerInterval) clearInterval(tickerInterval);
-    
-    tickerInterval = setInterval(() => {
-      const now = new Date();
-      const currentEvent = getCurrentEvent(now);
-      
-      if (currentEvent && (manualToggle.checked || (schedToggle.checked && currentEvent.name))) {
-        const timeSinceLastShow = now.getTime() - lastTickerShow;
-        
-        // Show ticker every 30 seconds (30000ms)
-        if (timeSinceLastShow >= 30000) {
-          showTicker(currentEvent.name);
-          lastTickerShow = now.getTime();
+  function startTickerSystem(){
+    if(tickerInterval)clearInterval(tickerInterval);
+    tickerInterval=setInterval(()=>{
+      const now=new Date(),currentEvent=getCurrentEvent(now);
+      if(currentEvent&&(manualToggle.checked||(schedToggle.checked&&currentEvent.name))){
+        const timeSinceLastShow=now.getTime()-lastTickerShow;
+        if(timeSinceLastShow>=30000){
+          showTopBar(currentEvent.name);
+          lastTickerShow=now.getTime()
         }
       }
-    }, 1000); // Check every second
+    },1000)
   }
   
-  // Get current event
-  function getCurrentEvent(now) {
-    const d = now.getDay();
-    const m = now.getHours() * 60 + now.getMinutes();
-    
-    return schedule.find(s => 
-      s.days.includes(d) && 
-      m >= (+s.start.slice(0,2)) * 60 + +s.start.slice(3) && 
-      m < (+s.end.slice(0,2)) * 60 + +s.end.slice(3)
-    );
-  }
-  
-  // Start ticker system
+  function getCurrentEvent(now){const d=now.getDay(),m=now.getHours()*60+now.getMinutes();return schedule.find(s=>s.enabled&&s.days.includes(d)&&m>=(+s.start.slice(0,2))*60+ +s.start.slice(3)&&m<(+s.end.slice(0,2))*60+ +s.end.slice(3))}
   startTickerSystem();
-  
-  // Initialize toggle buttons
-  [...fontToggleGroup.children].forEach(btn=>{
-    btn.classList.toggle('active',btn.dataset.font===currentFont);
-    btn.onclick=()=>{
-      [...fontToggleGroup.children].forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFont=btn.dataset.font;
-      root.style.setProperty('--body-font',currentFont);
-      localStorage.setItem('fontStyle',currentFont);
-    };
-  });
-  
-  [...layoutToggleGroup.children].forEach(btn=>{
-    btn.classList.toggle('active',btn.dataset.layout===currentLayout);
-    btn.onclick=()=>{
-      [...layoutToggleGroup.children].forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      currentLayout=btn.dataset.layout;
-      document.body.classList.toggle('is-circular',currentLayout==='circular');
-      document.body.classList.toggle('is-particle',currentLayout==='particle');
-      document.body.classList.toggle('is-nebula',currentLayout==='nebula');
-      localStorage.setItem('layoutTheme',currentLayout);
-    };
-  });
-  
-  [...dateToggleGroup.children].forEach(btn=>{
-    btn.classList.toggle('active',btn.dataset.format===currentDateFormat);
-    btn.onclick=()=>{
-      [...dateToggleGroup.children].forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      currentDateFormat=btn.dataset.format;
-      localStorage.setItem('dateFormat',currentDateFormat);
-    };
-  });
-  
-  // Create particle dots
-  for(let i=0;i<50;i++){
-    const dot=document.createElement('div');
-    dot.className='particle-dot';
-    const angle=Math.random()*360;
-    const radius=Math.random()*40+10;
-    const x=50+Math.cos(angle*Math.PI/180)*radius;
-    const y=50+Math.sin(angle*Math.PI/180)*radius;
-    dot.style.left=x+'%';
-    dot.style.top=y+'%';
-    dot.style.animationDelay=(Math.random()*6)+'s';
-    particleDotsContainer.appendChild(dot);
-  }
-  
-  // Progress bar backward animation variables
-  let clearing=false;
-  let lastSec=-1;
-  
-  function animateBackwards(){
-    clearing=true;
-    let i=59;
-    function next(){
-      if(i<0){
-        clearing=false;
-        return;
-      }
-      dots[i].classList.remove('active');
-      i--;
-      setTimeout(next,8);
-    }
-    next();
-  }
-  
-  function formatDate(date,format){
-    switch(format){
-      case 'en-US':return date.toLocaleDateString('en-US');
-      case 'en-CA':return date.toISOString().split('T')[0];
-      case 'de-DE':return date.toLocaleDateString('de-DE');
-      case 'fr-FR':return date.toLocaleDateString('fr-FR');
-      case 'long-en':return date.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-      case 'long-weekday':return date.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-      default:return date.toLocaleDateString('en-GB');
-    }
-  }
-  
-  function renderSchedule(){
-    schedList.innerHTML='';
-    const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    schedule.forEach((s,i)=>{
-      const row=document.createElement('div');row.className='glass-container p-3 flex justify-between items-center mb-2';
-      row.innerHTML=`<div><p class="font-bold">${s.name || 'Unnamed Event'}</p><p class="text-sm opacity-75">${s.start} - ${s.end}</p><p class="text-xs opacity-60">${s.days.map(d=>dn[d]).join(', ')}</p></div><div class="flex gap-2"><button class="edit text-cyan-400" data-i="${i}">✏️</button><button class="del text-red-400" data-i="${i}">🗑️</button></div>`;
-      schedList.appendChild(row);
-    });
-    schedList.querySelectorAll('.edit').forEach(b=>b.onclick=e=>openEdit(+e.currentTarget.dataset.i));
-    schedList.querySelectorAll('.del').forEach(b=>b.onclick=e=>{schedule.splice(+e.currentTarget.dataset.i,1);saveSchedule();});
-  }
-  function saveSchedule(){localStorage.setItem('onAirSchedule',JSON.stringify(schedule));renderSchedule();}
-  const openEdit=i=>{
-    editIdx=i;settings.classList.add('opacity-0','pointer-events-none');editModal.classList.remove('opacity-0','pointer-events-none');
-    if(i===-1){editHeading.textContent='Add Schedule';eventNameIn.value='';startIn.value='08:00';endIn.value='09:00';dayChecks.forEach(c=>c.checked=false);}
-    else{editHeading.textContent='Edit Schedule';const s=schedule[i];eventNameIn.value=s.name||'';startIn.value=s.start;endIn.value=s.end;dayChecks.forEach(c=>c.checked=s.days.includes(+c.dataset.day));}
-  };
-  $('save-schedule-btn').onclick=()=>{
-    const name=eventNameIn.value||'Unnamed Event', st=startIn.value, et=endIn.value, days=dayChecks.filter(c=>c.checked).map(c=>+c.dataset.day);
-    if(!st||!et||!days.length)return;
-    const obj={name,start:st,end:et,days};
-    editIdx===-1?schedule.push(obj):schedule[editIdx]=obj;saveSchedule();editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none');
-  };
+  [...fontToggleGroup.children].forEach(btn=>{btn.classList.toggle('active',btn.dataset.font===currentFont);btn.onclick=()=>{[...fontToggleGroup.children].forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFont=btn.dataset.font;root.style.setProperty('--body-font',currentFont);localStorage.setItem('fontStyle',currentFont)}});
+  [...layoutToggleGroup.children].forEach(btn=>{btn.classList.toggle('active',btn.dataset.layout===currentLayout);btn.onclick=()=>{[...layoutToggleGroup.children].forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentLayout=btn.dataset.layout;document.body.classList.toggle('is-circular',currentLayout==='circular');document.body.classList.toggle('is-particle',currentLayout==='particle');document.body.classList.toggle('is-nebula',currentLayout==='nebula');localStorage.setItem('layoutTheme',currentLayout)}});
+  [...dateToggleGroup.children].forEach(btn=>{btn.classList.toggle('active',btn.dataset.format===currentDateFormat);btn.onclick=()=>{[...dateToggleGroup.children].forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentDateFormat=btn.dataset.format;localStorage.setItem('dateFormat',currentDateFormat)}});
+  for(let i=0;i<50;i++){const dot=document.createElement('div');dot.className='particle-dot';const angle=Math.random()*360,radius=Math.random()*40+10,x=50+Math.cos(angle*Math.PI/180)*radius,y=50+Math.sin(angle*Math.PI/180)*radius;dot.style.left=x+'%';dot.style.top=y+'%';dot.style.animationDelay=(Math.random()*6)+'s';particleDotsContainer.appendChild(dot)}
+  let clearing=false,lastSec=-1;
+  function animateBackwards(){clearing=true;let i=59;function next(){if(i<0){clearing=false;return}dots[i].classList.remove('active');i--;setTimeout(next,8)}next()}
+  function formatDate(date,format){switch(format){case 'en-US':return date.toLocaleDateString('en-US');case 'en-CA':return date.toISOString().split('T')[0];case 'de-DE':return date.toLocaleDateString('de-DE');case 'fr-FR':return date.toLocaleDateString('fr-FR');case 'long-en':return date.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});case 'long-weekday':return date.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});default:return date.toLocaleDateString('en-GB')}}
+  function renderSchedule(){schedList.innerHTML='';const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];schedule.forEach((s,i)=>{const row=document.createElement('div');row.className='schedule-event-row';row.innerHTML=`<div class="schedule-event-info"><p class="schedule-event-name"><span class="dot"></span>${s.name||'Unnamed Event'}</p><p class="text-sm opacity-75">${s.start} - ${s.end}</p><p class="text-xs opacity-60">${s.days.map(d=>dn[d]).join(', ')}</p></div><div class="flex items-center gap-3"><label class="toggle-switch-frame cursor-pointer"><input type="checkbox" class="toggle-switch-input" data-index="${i}" ${s.enabled?'checked':''}><span class="toggle-switch-inner"><span class="switch-handle"></span></span></label><div class="flex gap-2"><button class="edit text-cyan-400 hover:text-cyan-300" data-i="${i}" title="Edit">✏️</button><button class="del text-red-400 hover:text-red-300" data-i="${i}" title="Delete">🗑️</button></div></div>`;schedList.appendChild(row)});schedList.querySelectorAll('.toggle-switch-input').forEach(input=>{input.addEventListener('change',e=>{const idx=parseInt(e.target.dataset.index);schedule[idx].enabled=e.target.checked;localStorage.setItem('onAirSchedule',JSON.stringify(schedule))})});schedList.querySelectorAll('.edit').forEach(b=>b.onclick=e=>openEdit(+e.currentTarget.dataset.i));schedList.querySelectorAll('.del').forEach(b=>b.onclick=e=>{schedule.splice(+e.currentTarget.dataset.i,1);saveSchedule()})}
+  function saveSchedule(){localStorage.setItem('onAirSchedule',JSON.stringify(schedule));renderSchedule()}
+  const openEdit=i=>{editIdx=i;settings.classList.add('opacity-0','pointer-events-none');editModal.classList.remove('opacity-0','pointer-events-none');if(i===-1){editHeading.textContent='Add Schedule';eventNameIn.value='';startIn.value='08:00';endIn.value='09:00';dayChecks.forEach(c=>c.checked=false)}else{editHeading.textContent='Edit Schedule';const s=schedule[i];eventNameIn.value=s.name||'';startIn.value=s.start;endIn.value=s.end;dayChecks.forEach(c=>c.checked=s.days.includes(+c.dataset.day))}};
+  $('save-schedule-btn').onclick=()=>{const name=eventNameIn.value||'Unnamed Event',st=startIn.value,et=endIn.value,days=dayChecks.filter(c=>c.checked).map(c=>+c.dataset.day);if(!st||!et||!days.length)return;const obj={name,start:st,end:et,days,enabled:true};editIdx===-1?schedule.push(obj):schedule[editIdx]=obj;saveSchedule();editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none')};
   $('cancel-schedule-btn').onclick=()=>{editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none')};
   editModal.onclick=e=>{if(e.target===editModal){editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none')}};
-  const inSchedule=now=>{
-    const d=now.getDay(), m=now.getHours()*60+now.getMinutes();
-    return schedule.some(s=>s.days.includes(d)&&m>=(+s.start.slice(0,2))*60+ +s.start.slice(3)&&m<(+s.end.slice(0,2))*60+ +s.end.slice(3));
-  };
-  const updateHands=now=>{
-    const h=now.getHours()%12, m=now.getMinutes(), s=now.getSeconds();
-    hHand.style.transform=`rotate(${h*30+m*0.5-90}deg)`;mHand.style.transform=`rotate(${m*6-90}deg)`;sHand.style.transform=`rotate(${s*6-90}deg)`;
-    root.style.setProperty('--progress',s/60*100);
-  };
-  function tick(){
-    const now=new Date(), sec=now.getSeconds();
-    const timeString=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-    const dateString=formatDate(now,currentDateFormat);
-    timeEl.textContent=timeString;
-    dateEl.textContent=dateString;
-    particleTimeEl.textContent=timeString;
-    particleDateEl.textContent=dateString;
-    nebulaTimeEl.textContent=timeString;
-    nebulaDateEl.textContent=dateString;
-    
-    // Progress bar with backward animation - FIXED SYNC
-    if(!clearing){
-      if(lastSec===59&&sec===0){
-        animateBackwards();
-      }
-      if(!clearing){
-        dots.forEach((d,i)=>d.classList.toggle('active',i<sec));
-      }
-    }
-    lastSec=sec;
-    
-    const onAir=manualToggle.checked||(schedToggle.checked&&inSchedule(now));
-    classicOnAir.classList.toggle('hidden',!onAir);circOnAir.classList.toggle('hidden',!onAir);particleOnAir.classList.toggle('hidden',!onAir);nebulaOnAir.classList.toggle('hidden',!onAir);
-    mainClock.classList.toggle('on-air-active-border',onAir);
-    onAirText.textContent = "LIVE";
-    const circSpan=circOnAir.querySelector('span');if(circSpan)circSpan.textContent="LIVE";
-    const partSpan=particleOnAir.querySelector('span');if(partSpan)partSpan.textContent="LIVE";
-    const nebSpan=nebulaOnAir.querySelector('span');if(nebSpan)nebSpan.textContent="LIVE";
-    updateHands(now);
-  }
+  const inSchedule=now=>{const d=now.getDay(),m=now.getHours()*60+now.getMinutes();return schedule.some(s=>s.enabled&&s.days.includes(d)&&m>=(+s.start.slice(0,2))*60+ +s.start.slice(3)&&m<(+s.end.slice(0,2))*60+ +s.end.slice(3))};
+  const updateHands=now=>{const h=now.getHours()%12,m=now.getMinutes(),s=now.getSeconds();hHand.style.transform=`rotate(${h*30+m*0.5-90}deg)`;mHand.style.transform=`rotate(${m*6-90}deg)`;sHand.style.transform=`rotate(${s*6-90}deg)`;root.style.setProperty('--progress',s/60*100)};
+  function tick(){const now=new Date(),sec=now.getSeconds(),timeString=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}),dateString=formatDate(now,currentDateFormat);timeEl.textContent=timeString;dateEl.textContent=dateString;particleTimeEl.textContent=timeString;particleDateEl.textContent=dateString;nebulaTimeEl.textContent=timeString;nebulaDateEl.textContent=dateString;if(!clearing){if(lastSec===59&&sec===0)animateBackwards();if(!clearing)dots.forEach((d,i)=>d.classList.toggle('active',i<sec))}lastSec=sec;const onAir=manualToggle.checked||(schedToggle.checked&&inSchedule(now));classicOnAir.classList.toggle('hidden',!onAir);circOnAir.classList.toggle('hidden',!onAir);particleOnAir.classList.toggle('hidden',!onAir);nebulaOnAir.classList.toggle('hidden',!onAir);mainClock.classList.toggle('on-air-active-border',onAir);onAirText.textContent="LIVE";const circSpan=circOnAir.querySelector('span');if(circSpan)circSpan.textContent="LIVE";const partSpan=particleOnAir.querySelector('span');if(partSpan)partSpan.textContent="LIVE";const nebSpan=nebulaOnAir.querySelector('span');if(nebSpan)nebSpan.textContent="LIVE";updateHands(now)}
   setInterval(tick,1000);tick();
-  neonGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--neon-color',div.dataset.color);localStorage.setItem('neonColor',div.dataset.color);[...neonGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
-  onAirGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--on-air-color',div.dataset.color);localStorage.setItem('onAirColor',div.dataset.color);[...onAirGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
-  outlineGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--text-outline-color',div.dataset.color);localStorage.setItem('textOutlineColor',div.dataset.color);[...outlineGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
-  bgGrid.onclick=e=>{const div=e.target.closest('[data-preset]');if(!div)return;document.body.classList.remove(...[...bgGrid.children].map(x=>x.dataset.preset));document.body.classList.add(div.dataset.preset);localStorage.setItem('bgPreset',div.dataset.preset);[...bgGrid.children].forEach(c=>c.classList.toggle('ring',c===div));};
-  settingsBtn.onclick=()=>settings.classList.remove('opacity-0','pointer-events-none');
-  closeSettings.onclick=()=>settings.classList.add('opacity-0','pointer-events-none');
+  neonGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--neon-color',div.dataset.color);localStorage.setItem('neonColor',div.dataset.color);[...neonGrid.children].forEach(c=>c.classList.toggle('ring',c===div))};
+  onAirGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--on-air-color',div.dataset.color);localStorage.setItem('onAirColor',div.dataset.color);[...onAirGrid.children].forEach(c=>c.classList.toggle('ring',c===div))};
+  outlineGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--text-outline-color',div.dataset.color);localStorage.setItem('textOutlineColor',div.dataset.color);[...outlineGrid.children].forEach(c=>c.classList.toggle('ring',c===div))};
+  bgGrid.onclick=e=>{const div=e.target.closest('[data-preset]');if(!div)return;document.body.classList.remove(...[...bgGrid.children].map(x=>x.dataset.preset));document.body.classList.add(div.dataset.preset);localStorage.setItem('bgPreset',div.dataset.preset);[...bgGrid.children].forEach(c=>c.classList.toggle('ring',c===div))};
+  settingsBtn.onclick=()=>settings.classList.remove('opacity-0','pointer-events-none');closeSettings.onclick=()=>settings.classList.add('opacity-0','pointer-events-none');
   settings.onclick=e=>{if(e.target===settings)settings.classList.add('opacity-0','pointer-events-none')};
   scaleSlider.oninput=e=>{const v=e.target.value;mainClock.style.transform=`scale(${v})`;circularWrap.style.transform=`scale(${v})`;particleWrap.style.transform=`scale(${v})`;nebulaWrap.style.transform=`scale(${v})`;scaleLbl.textContent=Math.round(v*100);localStorage.setItem('clockScale',v)};
   manualToggle.onchange=e=>localStorage.setItem('manualOnAirState',e.target.checked);
-  
-  // Text outline toggle
-  textOutlineToggle.onchange=e=>{
-    updateTextOutline();
-    localStorage.setItem('textOutlineEnabled',e.target.checked);
-  };
-  
-  // Background effects toggles
-  firefliesToggle.onchange=e=>{
-    firefliesContainer.classList.toggle('active',e.target.checked);
-    localStorage.setItem('firefliesEnabled',e.target.checked);
-  };
-  parallaxStarsToggle.onchange=e=>{
-    parallaxStarsContainer.classList.toggle('active',e.target.checked);
-    localStorage.setItem('parallaxStarsEnabled',e.target.checked);
-  };
-  
-  addSchedBtn.onclick=()=>openEdit(-1);
-  renderSchedule();
+  textOutlineToggle.onchange=e=>{updateTextOutline();localStorage.setItem('textOutlineEnabled',e.target.checked)};
+  firefliesToggle.onchange=e=>{firefliesContainer.classList.toggle('active',e.target.checked);localStorage.setItem('firefliesEnabled',e.target.checked)};
+  parallaxStarsToggle.onchange=e=>{parallaxStarsContainer.classList.toggle('active',e.target.checked);localStorage.setItem('parallaxStarsEnabled',e.target.checked)};
+  addSchedBtn.onclick=()=>openEdit(-1);renderSchedule()
 };
 </script>
 </body>
