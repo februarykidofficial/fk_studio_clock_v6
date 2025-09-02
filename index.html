@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share Tech Mono&display=swap" rel="stylesheet">
   <style>
     :root{
       --neon-color:#00FFFF;
@@ -86,7 +86,7 @@
     .circular-pivot{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#000;border:2px solid #fff;box-shadow:0 0 6px var(--neon-color)}
     .circular-watermark{display:none}
     .circular-indicator{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);font:700 16px var(--body-font);text-transform:uppercase;color:white;transition:opacity .3s;display:flex;align-items:center;gap:12px}
-    .circular-indicator .dot{width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 0 0 .5px rgba(0,0,0,.3)}
+    .circular-indicator .dot{content:"●";color:white;font-size:20px;text-shadow:0 0 8px var(--on-air-color);animation:pulse 2s infinite;flex-shrink:0}
     .circular-indicator span{text-shadow:1px 1px 2px rgba(0,0,0,.7)}
     .circular-indicator.hidden{opacity:0}
     .particle-wrap{position:relative;width:min(80vh,80vw);aspect-ratio:1/1;margin:auto;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -105,7 +105,7 @@
     .particle-dot{position:absolute;width:3px;height:3px;background:var(--neon-color);border-radius:50%;box-shadow:0 0 10px var(--neon-color);animation:particle-float 6s ease-in-out infinite}
     @keyframes particle-float{0%,100%{opacity:.3;transform:translateY(0) scale(.8)}50%{opacity:1;transform:translateY(-20px) scale(1.2)}}
     .particle-indicator{position:absolute;top:30px;right:30px;font:700 20px var(--body-font);text-transform:uppercase;color:white;transition:opacity .3s;display:flex;align-items:center;gap:15px}
-    .particle-indicator .dot{width:18px;height:18px;border-radius:50%;background:white;box-shadow:0 0 20px var(--on-air-color)}
+    .particle-indicator .dot{content:"●";color:white;font-size:20px;text-shadow:0 0 8px var(--on-air-color);animation:pulse 2s infinite;flex-shrink:0}
     .particle-indicator span{text-shadow:2px 2px 4px rgba(0,0,0,.8)}
     .particle-indicator.hidden{opacity:0}
     .nebula-wrap{position:relative;width:min(90vh,90vw);aspect-ratio:1/1;margin:auto;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:50%}
@@ -117,13 +117,13 @@
     .nebula-time.text-outline{-webkit-text-stroke:2px var(--text-outline-color);text-stroke:2px var(--text-outline-color)}
     .nebula-date{font-size:clamp(1.2rem,3vw,2rem);color:rgba(255,255,255,0.9);text-shadow:0 0 15px rgba(255,255,255,0.7);letter-spacing:0.05em;white-space:nowrap}
     .nebula-indicator{position:absolute;top:30px;right:30px;font:700 18px var(--body-font);text-transform:uppercase;color:white;transition:opacity .3s;display:flex;align-items:center;gap:12px;text-shadow:2px 2px 4px rgba(0,0,0,0.8)}
-    .nebula-indicator .dot{width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 0 20px var(--on-air-color)}
+    .nebula-indicator .dot{content:"●";color:white;font-size:20px;text-shadow:0 0 8px var(--on-air-color);animation:pulse 2s infinite;flex-shrink:0}
     .nebula-indicator.hidden{opacity:0}
     #current-date{white-space:nowrap;font-size:clamp(1.5rem,4vw,3rem)}
     @keyframes flip{0%,80%{transform:rotateY(0deg)}90%{transform:rotateY(360deg)}100%{transform:rotateY(360deg)}}
     .live-indicator-wrapper{display:inline-flex;align-items:center;gap:12px;animation:flip 5s infinite;transform-style:preserve-3d}
     
-    /* TOP BAR CONTAINER FOR TICKER AND LIVE INDICATOR */
+    /* TOP BAR CONTAINER FOR TICKER AND LIVE INDICATOR - CYCLING SYSTEM */
     #top-bar-container {
       position: absolute;
       top: 22px;
@@ -134,22 +134,21 @@
       justify-content: space-between;
       z-index: 20;
       opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.8s ease-in-out;
+      transform: translateY(0);
+      transition: opacity 0.8s ease-in-out;
       min-height: 31px;
     }
     
     #top-bar-container.show {
       opacity: 1;
-      transform: translateY(0);
     }
     
-    /* TICKER CONTAINER (LEFT SIDE) */
+    /* TICKER CONTAINER (LEFT SIDE) - WITH PROPER CYCLING VISIBILITY */
     #live-ticker {
       backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.15);
       color: white;
-      padding: 6px 18px;
+      padding: 2px 18px;
       border-radius: 12px;
       font-weight: 600;
       font-size: 20px;
@@ -167,6 +166,15 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.8s ease-in-out;
+    }
+    
+    /* FIXED: Proper hidden state for ticker */
+    #live-ticker.ticker-hidden {
+      opacity: 0;
+      pointer-events: none;
     }
     
     #live-ticker::before {
@@ -178,12 +186,12 @@
       flex-shrink: 0;
     }
     
-    /* LIVE INDICATOR CONTAINER (RIGHT SIDE) */
+    /* LIVE INDICATOR CONTAINER (RIGHT SIDE) - ALWAYS VISIBLE WHEN ON AIR */
     #on-air-indicator {
       backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.15);
       color: white;
-      padding: 6px 18px;
+      padding: 2px 18px;
       border-radius: 12px;
       font-weight: 600;
       font-size: 20px;
@@ -205,12 +213,12 @@
     }
     
     .live-indicator-wrapper .dot {
-      width: 12px;
-      height: 12px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 10px white, 0 0 20px white;
+      content: "●";
+      color: white;
+      font-size: 20px;
+      text-shadow: 0 0 8px var(--on-air-color);
       animation: pulse 2s infinite;
+      flex-shrink: 0;
     }
     
     .live-indicator-wrapper span {
@@ -232,7 +240,7 @@
     .schedule-event-info{flex:1}
     .schedule-event-info p{margin:0;line-height:1.4}
     .schedule-event-name{text-transform:uppercase;font-weight:700;letter-spacing:0.05em;color:#fff;display:flex;align-items:center;gap:8px;margin-bottom:4px}
-    .schedule-event-name .dot{width:8px;height:8px;background:var(--on-air-color);border-radius:50%;box-shadow:0 0 6px var(--on-air-color)}
+    .schedule-event-name .dot{content:"●";color:var(--on-air-color);font-size:16px;text-shadow:0 0 6px var(--on-air-color);flex-shrink:0}
     .fireflies-container{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1;overflow:hidden;display:none}
     .fireflies-container.active{display:block}
     .firefly{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 16px #fff;animation:firefly-float 8s linear infinite}
@@ -244,13 +252,11 @@
     .star.type-2{width:2px;height:2px}
     .star.type-3{width:3px;height:3px}
     @keyframes star-move{from{transform:translateY(100vh)}to{transform:translateY(-100px)}}
-  </style>
+</style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen text-white p-4 bg-preset-night-black">
-
 <div id="fireflies-container" class="fireflies-container active"></div>
 <div id="parallax-stars-container" class="parallax-stars-container active"></div>
-
 <div id="views" class="w-full max-w-3xl">
   <div id="view-classic">
     <div id="main-clock-container" class="glass-container p-10 md:p-16 rounded-3xl w-full max-w-3xl space-y-8 text-center">
@@ -265,7 +271,7 @@
         <!-- LIVE INDICATOR CONTAINER (RIGHT) -->
         <div id="on-air-indicator" class="hidden">
           <div class="live-indicator-wrapper">
-            <div class="dot"></div>
+            <div class="dot">●</div>
             <span id="on-air-text">LIVE</span>
           </div>
         </div>
@@ -279,18 +285,16 @@
       <div id="progress-dots-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center w-11/12"></div>
     </div>
   </div>
-
   <div id="view-circular" role="group" aria-label="Half-dial Clock">
     <div class="circular-wrap" id="circular-wrap">
       <div class="circular-face">
         <div class="circular-arc outer"></div><div class="circular-arc inner"></div><div class="circular-ticks"></div>
         <div id="handHour" class="circular-hand hour"></div><div id="handMinute" class="circular-hand minute"></div><div id="handSecond" class="circular-hand second"></div>
         <div class="circular-pivot"></div>
-        <div id="circIndicator" class="circular-indicator hidden"><div class="live-indicator-wrapper"><div class="dot"></div><span>LIVE</span></div></div>
+        <div id="circIndicator" class="circular-indicator hidden"><div class="live-indicator-wrapper"><div class="dot">●</div><span>LIVE</span></div></div>
       </div>
     </div>
   </div>
-
   <div id="view-particle" role="group" aria-label="Particle Wave Clock">
     <div class="particle-wrap" id="particle-wrap">
       <div class="particle-container">
@@ -298,28 +302,25 @@
         <div class="particle-wave"></div><div class="particle-wave"></div><div class="particle-wave"></div><div class="particle-wave"></div>
         <div class="particle-dots" id="particle-dots"></div>
         <p id="particle-time" class="particle-time"></p><p id="particle-date" class="particle-date"></p>
-        <div id="particleIndicator" class="particle-indicator hidden"><div class="live-indicator-wrapper"><div class="dot"></div><span>LIVE</span></div></div>
+        <div id="particleIndicator" class="particle-indicator hidden"><div class="live-indicator-wrapper"><div class="dot">●</div><span>LIVE</span></div></div>
       </div>
     </div>
   </div>
-
   <div id="view-nebula" role="group" aria-label="Nebula Clock">
     <div class="nebula-wrap" id="nebula-wrap">
       <div class="nebula-animation" id="nebula-animation">
-        <img src="nebula1.png" alt="" class="active"><img src="nebula2.png" alt=""><img src="nebula3.png" alt=""><img src="nebula4.png" alt=""><img src="nebula5.png" alt="">
+        <img src="nebula1.png" alt="" class="active"><img src="nebula2.png" alt=""><img src="nebula3.png" alt=""><img src="nebula4.png" alt=""><img src="nebula5" alt=""><img src="nebula5.png" alt="">
       </div>
       <div class="nebula-content"><p id="nebula-time" class="nebula-time"></p><p id="nebula-date" class="nebula-date"></p></div>
-      <div id="nebulaIndicator" class="nebula-indicator hidden"><div class="live-indicator-wrapper"><div class="dot"></div><span>LIVE</span></div></div>
+      <div id="nebulaIndicator" class="nebula-indicator hidden"><div class="live-indicator-wrapper"><div class="dot">●</div><span>LIVE</span></div></div>
     </div>
   </div>
 </div>
-
 <button id="settings-btn" class="glass-btn p-3 rounded-full absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
   </svg>
 </button>
-
 <div id="settings-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none">
   <div class="modal-content w-full max-w-sm p-6 rounded-2xl overflow-y-auto max-h-[90vh]">
     <h2 class="text-2xl font-semibold mb-4 text-center">Settings</h2>
@@ -387,7 +388,7 @@
         <div data-preset="bg-preset-night-stars" class="bg-preset-night-stars w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
         <div data-preset="bg-preset-milky-way" class="bg-preset-milky-way w-8 h-8 rounded border border-white/20 cursor-pointer"></div>
       </div>
-      <h4 class="text-lg font-bold mb-2 text-center">Background Effects</h4>
+<h4 class="text-lg font-bold mb-2 text-center">Background Effects</h4>
       <div class="flex items-center justify-between mb-3">
         <p class="text-lg">Fireflies Effect</p>
         <div class="toggle-switch-frame"><label class="inline-flex items-center cursor-pointer"><input id="fireflies-toggle" type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-500"></div></label></div>
@@ -449,7 +450,6 @@
     <button id="close-modal-btn" class="glass-btn w-full py-2 rounded font-bold">Close</button>
   </div>
 </div>
-
 <div id="edit-schedule-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none">
   <div class="modal-content w-full max-w-sm p-6 rounded-2xl">
     <h2 id="edit-schedule-heading" class="text-2xl font-semibold mb-4 text-center">Add Schedule</h2>
@@ -474,7 +474,6 @@
     </div>
   </div>
 </div>
-
 <script>
 window.onload=function(){
   const $=id=>document.getElementById(id);
@@ -489,12 +488,11 @@ window.onload=function(){
   const firefliesContainer=$('fireflies-container'),parallaxStarsContainer=$('parallax-stars-container');
   const schedList=$('schedule-list'),addSchedBtn=$('add-schedule-btn'),editModal=$('edit-schedule-modal'),startIn=$('start-time-input'),endIn=$('end-time-input'),eventNameIn=$('event-name-input'),editHeading=$('edit-schedule-heading');
   const dayChecks=[...editModal.querySelectorAll('input[type="checkbox"]')];
-  
-  // NEW: Top bar container and elements
+  // CYCLING SYSTEM: Top bar container and ticker cycling
   const topBarContainer=$('top-bar-container');
   const liveTicker=$('live-ticker'),tickerText=$('ticker-text');
-  let tickerInterval=null,lastTickerShow=0;
-  
+  let tickerCycleInterval = null;
+  let isTickerVisible = true;
   const fontToggleGroup=$('font-toggle-group'),layoutToggleGroup=$('layout-toggle-group'),dateToggleGroup=$('date-toggle-group');
   let currentFont=localStorage.getItem('fontStyle')||"'Oxanium', monospace",currentLayout=localStorage.getItem('layoutTheme')||'classic',currentDateFormat=localStorage.getItem('dateFormat')||'long-weekday';
   const nebulaFrames=document.querySelectorAll('#nebula-animation img');
@@ -502,7 +500,7 @@ window.onload=function(){
   function cycleNebulaFrames(){if(nebulaFrames.length===0)return;nebulaFrames[currentNebulaFrame].classList.remove('active');currentNebulaFrame=(currentNebulaFrame+1)%nebulaFrames.length;nebulaFrames[currentNebulaFrame].classList.add('active')}
   setInterval(cycleNebulaFrames,500);
   function createFireflies(){firefliesContainer.innerHTML='';for(let i=0;i<30;i++){const firefly=document.createElement('div');firefly.className='firefly';firefly.style.left=Math.random()*100+'%';firefly.style.animationDelay=Math.random()*8+'s';firefly.style.animationDuration=(Math.random()*4+6)+'s';firefliesContainer.appendChild(firefly)}}
-  function createParallaxStars(){parallaxStarsContainer.innerHTML='';for(let type=1;type<=3;type++){const quantity=type===1?100:(type===2?80:60);for(let i=0;i<quantity;i++){const star=document.createElement('div');star.className=`star type-${type}`;star.style.left=Math.random()*100+'%';star.style.animationDuration=(Math.random()*20+30)+'s';star.style.animationDelay=Math.random()*-30+'s';parallaxStarsContainer.appendChild(star)}}}
+function createParallaxStars(){parallaxStarsContainer.innerHTML='';for(let type=1;type<=3;type++){const quantity=type===1?100:(type===2?80:60);for(let i=0;i<quantity;i++){const star=document.createElement('div');star.className=`star type-${type}`;star.style.left=Math.random()*100+'%';star.style.animationDuration=(Math.random()*20+30)+'s';star.style.animationDelay=Math.random()*-30+'s';parallaxStarsContainer.appendChild(star)}}}
   createFireflies();createParallaxStars();
   const SCHEDULE_VERSION='2.1',currentVersion=localStorage.getItem('scheduleVersion');
   if(currentVersion!==SCHEDULE_VERSION){localStorage.removeItem('onAirSchedule');localStorage.setItem('scheduleVersion',SCHEDULE_VERSION)}
@@ -525,31 +523,50 @@ window.onload=function(){
   firefliesContainer.classList.toggle('active',firefliesToggle.checked);parallaxStarsContainer.classList.toggle('active',parallaxStarsToggle.checked);
   function updateTextOutline(){const hasOutline=textOutlineToggle.checked;timeEl.classList.toggle('text-outline',hasOutline);particleTimeEl.classList.toggle('text-outline',hasOutline);nebulaTimeEl.classList.toggle('text-outline',hasOutline)}
   updateTextOutline();
-  
-  // UPDATED: Top bar ticker system
-  function showTopBar(eventName){
-    if(!eventName||currentLayout!=='classic')return;
-    tickerText.textContent=eventName;
-    topBarContainer.classList.add('show');
-    setTimeout(()=>{topBarContainer.classList.remove('show')},10000)
-  }
-  
-  function startTickerSystem(){
-    if(tickerInterval)clearInterval(tickerInterval);
-    tickerInterval=setInterval(()=>{
-      const now=new Date(),currentEvent=getCurrentEvent(now);
-      if(currentEvent&&(manualToggle.checked||(schedToggle.checked&&currentEvent.name))){
-        const timeSinceLastShow=now.getTime()-lastTickerShow;
-        if(timeSinceLastShow>=30000){
-          showTopBar(currentEvent.name);
-          lastTickerShow=now.getTime()
-        }
+  // FIXED: Ticker visibility cycling every 10 seconds with proper class name
+  function startTickerCycling() {
+    if (tickerCycleInterval) clearInterval(tickerCycleInterval);
+    
+    // Start with ticker visible
+    isTickerVisible = true;
+    liveTicker.classList.remove('ticker-hidden');
+    
+    tickerCycleInterval = setInterval(() => {
+      if (isTickerVisible) {
+        // Hide ticker after 10 seconds
+        liveTicker.classList.add('ticker-hidden');
+        isTickerVisible = false;
+      } else {
+        // Show ticker after another 10 seconds
+        liveTicker.classList.remove('ticker-hidden');
+        isTickerVisible = true;
       }
-    },1000)
+    }, 10000);
   }
-  
+  function stopTickerCycling() {
+    if (tickerCycleInterval) {
+      clearInterval(tickerCycleInterval);
+      tickerCycleInterval = null;
+    }
+    // Reset ticker to visible state when stopping cycle
+    liveTicker.classList.remove('ticker-hidden');
+    isTickerVisible = true;
+  }
+  function updateTopBarVisibility(onAir, eventName) {
+    if (!onAir || currentLayout !== 'classic') {
+      topBarContainer.classList.remove('show');
+      stopTickerCycling();
+      return;
+    }
+    
+    // When ON AIR is active, show the top bar and start ticker cycling
+    if (eventName) {
+      tickerText.textContent = eventName;
+    }
+    topBarContainer.classList.add('show');
+    startTickerCycling();
+  }
   function getCurrentEvent(now){const d=now.getDay(),m=now.getHours()*60+now.getMinutes();return schedule.find(s=>s.enabled&&s.days.includes(d)&&m>=(+s.start.slice(0,2))*60+ +s.start.slice(3)&&m<(+s.end.slice(0,2))*60+ +s.end.slice(3))}
-  startTickerSystem();
   [...fontToggleGroup.children].forEach(btn=>{btn.classList.toggle('active',btn.dataset.font===currentFont);btn.onclick=()=>{[...fontToggleGroup.children].forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFont=btn.dataset.font;root.style.setProperty('--body-font',currentFont);localStorage.setItem('fontStyle',currentFont)}});
   [...layoutToggleGroup.children].forEach(btn=>{btn.classList.toggle('active',btn.dataset.layout===currentLayout);btn.onclick=()=>{[...layoutToggleGroup.children].forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentLayout=btn.dataset.layout;document.body.classList.toggle('is-circular',currentLayout==='circular');document.body.classList.toggle('is-particle',currentLayout==='particle');document.body.classList.toggle('is-nebula',currentLayout==='nebula');localStorage.setItem('layoutTheme',currentLayout)}});
   [...dateToggleGroup.children].forEach(btn=>{btn.classList.toggle('active',btn.dataset.format===currentDateFormat);btn.onclick=()=>{[...dateToggleGroup.children].forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentDateFormat=btn.dataset.format;localStorage.setItem('dateFormat',currentDateFormat)}});
@@ -557,7 +574,7 @@ window.onload=function(){
   let clearing=false,lastSec=-1;
   function animateBackwards(){clearing=true;let i=59;function next(){if(i<0){clearing=false;return}dots[i].classList.remove('active');i--;setTimeout(next,8)}next()}
   function formatDate(date,format){switch(format){case 'en-US':return date.toLocaleDateString('en-US');case 'en-CA':return date.toISOString().split('T')[0];case 'de-DE':return date.toLocaleDateString('de-DE');case 'fr-FR':return date.toLocaleDateString('fr-FR');case 'long-en':return date.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});case 'long-weekday':return date.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});default:return date.toLocaleDateString('en-GB')}}
-  function renderSchedule(){schedList.innerHTML='';const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];schedule.forEach((s,i)=>{const row=document.createElement('div');row.className='schedule-event-row';row.innerHTML=`<div class="schedule-event-info"><p class="schedule-event-name"><span class="dot"></span>${s.name||'Unnamed Event'}</p><p class="text-sm opacity-75">${s.start} - ${s.end}</p><p class="text-xs opacity-60">${s.days.map(d=>dn[d]).join(', ')}</p></div><div class="flex items-center gap-3"><label class="toggle-switch-frame cursor-pointer"><input type="checkbox" class="toggle-switch-input" data-index="${i}" ${s.enabled?'checked':''}><span class="toggle-switch-inner"><span class="switch-handle"></span></span></label><div class="flex gap-2"><button class="edit text-cyan-400 hover:text-cyan-300" data-i="${i}" title="Edit">✏️</button><button class="del text-red-400 hover:text-red-300" data-i="${i}" title="Delete">🗑️</button></div></div>`;schedList.appendChild(row)});schedList.querySelectorAll('.toggle-switch-input').forEach(input=>{input.addEventListener('change',e=>{const idx=parseInt(e.target.dataset.index);schedule[idx].enabled=e.target.checked;localStorage.setItem('onAirSchedule',JSON.stringify(schedule))})});schedList.querySelectorAll('.edit').forEach(b=>b.onclick=e=>openEdit(+e.currentTarget.dataset.i));schedList.querySelectorAll('.del').forEach(b=>b.onclick=e=>{schedule.splice(+e.currentTarget.dataset.i,1);saveSchedule()})}
+  function renderSchedule(){schedList.innerHTML='';const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];schedule.forEach((s,i)=>{const row=document.createElement('div');row.className='schedule-event-row';row.innerHTML=`<div class="schedule-event-info"><p class="schedule-event-name"><span class="dot">●</span>${s.name||'Unnamed Event'}</p><p class="text-sm opacity-75">${s.start} - ${s.end}</p><p class="text-xs opacity-60">${s.days.map(d=>dn[d]).join(', ')}</p></div><div class="flex items-center gap-3"><label class="toggle-switch-frame cursor-pointer"><input type="checkbox" class="toggle-switch-input" data-index="${i}" ${s.enabled?'checked':''}><span class="toggle-switch-inner"><span class="switch-handle"></span></span></label><div class="flex gap-2"><button class="edit text-cyan-400 hover:text-cyan-300" data-i="${i}" title="Edit">✏️</button><button class="del text-red-400 hover:text-red-300" data-i="${i}" title="Delete">🗑️</button></div></div>`;schedList.appendChild(row)});schedList.querySelectorAll('.toggle-switch-input').forEach(input=>{input.addEventListener('change',e=>{const idx=parseInt(e.target.dataset.index);schedule[idx].enabled=e.target.checked;localStorage.setItem('onAirSchedule',JSON.stringify(schedule))})});schedList.querySelectorAll('.edit').forEach(b=>b.onclick=e=>openEdit(+e.currentTarget.dataset.i));schedList.querySelectorAll('.del').forEach(b=>b.onclick=e=>{schedule.splice(+e.currentTarget.dataset.i,1);saveSchedule()})}
   function saveSchedule(){localStorage.setItem('onAirSchedule',JSON.stringify(schedule));renderSchedule()}
   const openEdit=i=>{editIdx=i;settings.classList.add('opacity-0','pointer-events-none');editModal.classList.remove('opacity-0','pointer-events-none');if(i===-1){editHeading.textContent='Add Schedule';eventNameIn.value='';startIn.value='08:00';endIn.value='09:00';dayChecks.forEach(c=>c.checked=false)}else{editHeading.textContent='Edit Schedule';const s=schedule[i];eventNameIn.value=s.name||'';startIn.value=s.start;endIn.value=s.end;dayChecks.forEach(c=>c.checked=s.days.includes(+c.dataset.day))}};
   $('save-schedule-btn').onclick=()=>{const name=eventNameIn.value||'Unnamed Event',st=startIn.value,et=endIn.value,days=dayChecks.filter(c=>c.checked).map(c=>+c.dataset.day);if(!st||!et||!days.length)return;const obj={name,start:st,end:et,days,enabled:true};editIdx===-1?schedule.push(obj):schedule[editIdx]=obj;saveSchedule();editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none')};
@@ -565,7 +582,23 @@ window.onload=function(){
   editModal.onclick=e=>{if(e.target===editModal){editModal.classList.add('opacity-0','pointer-events-none');settings.classList.remove('opacity-0','pointer-events-none')}};
   const inSchedule=now=>{const d=now.getDay(),m=now.getHours()*60+now.getMinutes();return schedule.some(s=>s.enabled&&s.days.includes(d)&&m>=(+s.start.slice(0,2))*60+ +s.start.slice(3)&&m<(+s.end.slice(0,2))*60+ +s.end.slice(3))};
   const updateHands=now=>{const h=now.getHours()%12,m=now.getMinutes(),s=now.getSeconds();hHand.style.transform=`rotate(${h*30+m*0.5-90}deg)`;mHand.style.transform=`rotate(${m*6-90}deg)`;sHand.style.transform=`rotate(${s*6-90}deg)`;root.style.setProperty('--progress',s/60*100)};
-  function tick(){const now=new Date(),sec=now.getSeconds(),timeString=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}),dateString=formatDate(now,currentDateFormat);timeEl.textContent=timeString;dateEl.textContent=dateString;particleTimeEl.textContent=timeString;particleDateEl.textContent=dateString;nebulaTimeEl.textContent=timeString;nebulaDateEl.textContent=dateString;if(!clearing){if(lastSec===59&&sec===0)animateBackwards();if(!clearing)dots.forEach((d,i)=>d.classList.toggle('active',i<sec))}lastSec=sec;const onAir=manualToggle.checked||(schedToggle.checked&&inSchedule(now));classicOnAir.classList.toggle('hidden',!onAir);circOnAir.classList.toggle('hidden',!onAir);particleOnAir.classList.toggle('hidden',!onAir);nebulaOnAir.classList.toggle('hidden',!onAir);mainClock.classList.toggle('on-air-active-border',onAir);onAirText.textContent="LIVE";const circSpan=circOnAir.querySelector('span');if(circSpan)circSpan.textContent="LIVE";const partSpan=particleOnAir.querySelector('span');if(partSpan)partSpan.textContent="LIVE";const nebSpan=nebulaOnAir.querySelector('span');if(nebSpan)nebSpan.textContent="LIVE";updateHands(now)}
+  function tick(){const now=new Date(),sec=now.getSeconds(),timeString=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}),dateString=formatDate(now,currentDateFormat);timeEl.textContent=timeString;dateEl.textContent=dateString;particleTimeEl.textContent=timeString;particleDateEl.textContent=dateString;nebulaTimeEl.textContent=timeString;nebulaDateEl.textContent=dateString;if(!clearing){if(lastSec===59&&sec===0)animateBackwards();if(!clearing)dots.forEach((d,i)=>d.classList.toggle('active',i<sec))}lastSec=sec;
+// Check ON AIR status and update top bar with cycling ticker
+  const onAir=manualToggle.checked||(schedToggle.checked&&inSchedule(now));
+  const currentEvent = getCurrentEvent(now);
+  // Update top bar visibility with cycling ticker system
+  updateTopBarVisibility(onAir, currentEvent ? currentEvent.name : 'FUTBOLOGIA');
+  // Update other ON AIR indicators for other themes
+  classicOnAir.classList.toggle('hidden',!onAir);
+  circOnAir.classList.toggle('hidden',!onAir);
+  particleOnAir.classList.toggle('hidden',!onAir);
+  nebulaOnAir.classList.toggle('hidden',!onAir);
+  mainClock.classList.toggle('on-air-active-border',onAir);
+  onAirText.textContent="LIVE";
+  const circSpan=circOnAir.querySelector('span');if(circSpan)circSpan.textContent="LIVE";
+  const partSpan=particleOnAir.querySelector('span');if(partSpan)partSpan.textContent="LIVE";
+  const nebSpan=nebulaOnAir.querySelector('span');if(nebSpan)nebSpan.textContent="LIVE";
+  updateHands(now)}
   setInterval(tick,1000);tick();
   neonGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--neon-color',div.dataset.color);localStorage.setItem('neonColor',div.dataset.color);[...neonGrid.children].forEach(c=>c.classList.toggle('ring',c===div))};
   onAirGrid.onclick=e=>{const div=e.target.closest('[data-color]');if(!div)return;root.style.setProperty('--on-air-color',div.dataset.color);localStorage.setItem('onAirColor',div.dataset.color);[...onAirGrid.children].forEach(c=>c.classList.toggle('ring',c===div))};
